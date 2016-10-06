@@ -1,0 +1,144 @@
+### accidents
+
+Accident_Index,      							201501BS70001,
+Location_Easting_OSGR,      					525130,
+Location_Northing_OSGR,     					180050,
+Longitude,     	 								-0.198465,
+Latitude,      									51.505538,
+Police_Force,      								1,
+Accident_Severity,      						3,
+Number_of_Vehicles,      						1,
+Number_of_Casualties,      						1,
+Date,      										12/01/2015,
+Day_of_Week,      								2,
+Time,      										18:45,
+Local_Authority_(District),      				12,
+Local_Authority_(Highway),      				E09000020,
+1st_Road_Class,      							5,
+1st_Road_Number,      							0,
+Road_Type,      								6,
+Speed_limit,      								30,
+Junction_Detail,      							3,
+Junction_Control,      							4,
+2nd_Road_Class,      							6,
+2nd_Road_Number,      							0,
+Pedestrian_Crossing-Human_Control,      		0,
+Pedestrian_Crossing-Physical_Facilities,    	0,
+Light_Conditions,      							4,
+Weather_Conditions,      						1,
+Road_Surface_Conditions,      					1,
+Special_Conditions_at_Site,      				0,
+Carriageway_Hazards,      						0,
+Urban_or_Rural_Area,      						1,
+Did_Police_Officer_Attend_Scene_of_Accident,	1,
+LSOA_of_Accident_Location      					E01002825
+
+
+### casualities
+
+Accident_Index,  								201597UA71710,
+Vehicle_Reference,  							2,
+Casualty_Reference,  							1,
+Casualty_Class,  								1,
+Sex_of_Casualty,  								2,
+Age_of_Casualty,  								75,
+Age_Band_of_Casualty,  							10,
+Casualty_Severity,  							3,
+Pedestrian_Location,  							0,
+Pedestrian_Movement,  							0,
+Car_Passenger,  								0,
+Bus_or_Coach_Passenger,  						0,
+Pedestrian_Road_Maintenance_Worker,  			0,
+Casualty_Type,  								9,
+Casualty_Home_Area_Type,  						3,
+Casualty_IMD_Decile 							-1
+
+
+### vehicles
+Accident_Index,    								201506E098757,
+Vehicle_Reference,    							2,
+Vehicle_Type,    								9,
+Towing_and_Articulation,    					0,
+Vehicle_Manoeuvre,    							18,
+Vehicle_Location-Restricted_Lane,    			0,
+Junction_Location,    							8,
+Skidding_and_Overturning,    					0,
+Hit_Object_in_Carriageway,    					0,
+Vehicle_Leaving_Carriageway,    				0,
+Hit_Object_off_Carriageway,    					0,
+1st_Point_of_Impact,    						3,
+Was_Vehicle_Left_Hand_Drive?,    				1,
+Journey_Purpose_of_Driver,    					6,
+Sex_of_Driver,    								1,
+Age_of_Driver,    								45,
+Age_Band_of_Driver,    							7,
+Engine_Capacity_(CC),    						1794,
+Propulsion_Code,    							1,
+Age_of_Vehicle,    								11,
+Driver_IMD_Decile,    							-1,
+Driver_Home_Area_Type,    						1,
+Vehicle_IMD_Decile    							-1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
