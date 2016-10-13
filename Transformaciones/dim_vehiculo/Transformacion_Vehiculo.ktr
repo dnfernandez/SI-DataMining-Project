@@ -69,15 +69,47 @@
   <created_date>2016&#x2f;10&#x2f;06 17&#x3a;48&#x3a;56.718</created_date>
   <modified_user>-</modified_user>
   <modified_date>2016&#x2f;10&#x2f;06 17&#x3a;48&#x3a;56.718</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>Conex_Vehiculo</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>datamart_trafico</database>
+    <port>3306</port>
+    <username>si</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb18ac738fc0fc94</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
   <hop> <from>CSV file input</from><to>Codigos tipo vehiculo</to><enabled>Y</enabled> </hop>
   <hop> <from>Codigos tipo vehiculo</from><to>Codigos articulado</to><enabled>Y</enabled> </hop>
-  <hop> <from>Codigos articulado</from><to>Salida Fichero de Texto</to><enabled>N</enabled> </hop>
+  <hop> <from>Codigos articulado</from><to>Edad veh&#xed;culo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Edad veh&#xed;culo</from><to>Codigos maniobra</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos maniobra</from><to>Codigos impacto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos impacto</from><to>Codigos volante izquierda</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos volante izquierda</from><to>Codigos combustible</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos combustible</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>CSV file input</name>
@@ -90,7 +122,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI&#x5c;Vehicles_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Vehicles_2015.min.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -108,253 +140,253 @@
         <name>Accident_Index</name>
         <type>String</type>
         <format/>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>13</length>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_Reference</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_Type</name>
         <type>String</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Towing_and_Articulation</name>
         <type>String</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_Manoeuvre</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_Location-Restricted_Lane</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Junction_Location</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Skidding_and_Overturning</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Hit_Object_in_Carriageway</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_Leaving_Carriageway</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Hit_Object_off_Carriageway</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>1st_Point_of_Impact</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Was_Vehicle_Left_Hand_Drive&#x3f;</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Journey_Purpose_of_Driver</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Sex_of_Driver</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Age_of_Driver</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Age_Band_of_Driver</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Engine_Capacity_&#x28;CC&#x29;</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Propulsion_Code</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Age_of_Vehicle</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Driver_IMD_Decile</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Driver_Home_Area_Type</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>Vehicle_IMD_Decile</name>
-        <type>Integer</type>
-        <format>&#x23;</format>
-        <currency>&#x20ac;</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>15</length>
-        <precision>0</precision>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
@@ -367,8 +399,8 @@
     </step>
 
   <step>
-    <name>Salida Fichero de Texto</name>
-    <type>TextFileOutput</type>
+    <name>Codigos articulado</name>
+    <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -377,66 +409,42 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <separator>&#x3b;</separator>
-    <enclosure>&#x22;</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>C&#x3a;&#x5c;Users&#x5c;dnfernandez&#x5c;Desktop&#x5c;prpasda</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
+    <field_to_use>Towing_and_Articulation</field_to_use>
+    <target_field>articulado</target_field>
+    <non_match_default/>
     <fields>
       <field>
-        <name>Vehicle_Type</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
+        <source_value>0</source_value>
+        <target_value>No tow&#x2f;articulation</target_value>
       </field>
       <field>
-        <name>Towing_and_Articulation</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
+        <source_value>1</source_value>
+        <target_value>Articulated vehicle</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Double or multiple trailer</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Caravan</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Single trailer</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Other tow</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>688</xloc>
+      <xloc>512</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
       </GUI>
@@ -454,7 +462,7 @@
            <schema_name/>
            </partitioning>
     <field_to_use>Vehicle_Type</field_to_use>
-    <target_field/>
+    <target_field>tipo_vehiculo</target_field>
     <non_match_default/>
     <fields>
       <field>
@@ -544,14 +552,44 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>304</xloc>
+      <xloc>368</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Codigos articulado</name>
+    <name>Edad veh&#xed;culo</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var edad &#x3d; Age_of_Vehicle&#x3b;&#xd;&#xa;var edad_vehiculo&#x3d;&#x22;&#x22;&#x3b;&#xd;&#xa;&#xd;&#xa;if &#x28;edad &#x3d;&#x3d; -1&#x29;&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;0&#x3b;&#xd;&#xa;&#x7d;else&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;edad&#x3b;&#xd;&#xa;&#x7d;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>edad_vehiculo</name>
+        <rename>edad_vehiculo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>512</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos maniobra</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -561,33 +599,81 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <field_to_use>Towing_and_Articulation</field_to_use>
-    <target_field/>
+    <field_to_use>Vehicle_Manoeuvre</field_to_use>
+    <target_field>maniobra</target_field>
     <non_match_default/>
     <fields>
       <field>
-        <source_value>0</source_value>
-        <target_value>No tow&#x2f;articulation</target_value>
-      </field>
-      <field>
         <source_value>1</source_value>
-        <target_value>Articulated vehicle</target_value>
+        <target_value>Reversing</target_value>
       </field>
       <field>
         <source_value>2</source_value>
-        <target_value>Double or multiple trailer</target_value>
+        <target_value>Parked</target_value>
       </field>
       <field>
         <source_value>3</source_value>
-        <target_value>Caravan</target_value>
+        <target_value>Waiting to go - held up</target_value>
       </field>
       <field>
         <source_value>4</source_value>
-        <target_value>Single trailer</target_value>
+        <target_value>Slowing or stopping</target_value>
       </field>
       <field>
         <source_value>5</source_value>
-        <target_value>Other tow</target_value>
+        <target_value>Moving off</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>U-turn</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Turning left</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Waiting to turn left</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Turning right</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>Waiting to turn right</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Changing lane to left</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Changing lane to right</target_value>
+      </field>
+      <field>
+        <source_value>13</source_value>
+        <target_value>Overtaking moving vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>14</source_value>
+        <target_value>Overtaking static vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>15</source_value>
+        <target_value>Overtaking - nearside</target_value>
+      </field>
+      <field>
+        <source_value>16</source_value>
+        <target_value>Going ahead left-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>17</source_value>
+        <target_value>Going ahead right-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>18</source_value>
+        <target_value>Going ahead other</target_value>
       </field>
       <field>
         <source_value>-1</source_value>
@@ -596,8 +682,238 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>432</xloc>
-      <yloc>96</yloc>
+      <xloc>368</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos impacto</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>1st_Point_of_Impact</field_to_use>
+    <target_field>impacto</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>0</source_value>
+        <target_value>Did not impact</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Front</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Back</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Offside</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Nearside</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos volante izquierda</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Was_Vehicle_Left_Hand_Drive&#x3f;</field_to_use>
+    <target_field>volante_izq</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>0</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos combustible</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Propulsion_Code</field_to_use>
+    <target_field>combustible</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Petrol</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Heavy oil</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Electric</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Steam</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Gas</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Petrol&#x2f;Gas &#x28;LPG&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Gas&#x2f;Bi-fuel</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Hybrid electric</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Gas Diesel</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>New fuel technology</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Fuel cells</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Electric diesel</target_value>
+      </field>
+      <field>
+        <source_value>M</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Salida Tabla</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conex_Vehiculo</connection>
+    <schema/>
+    <table>dim_vehiculo</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>tipo_vehiculo</column_name>
+          <stream_name>tipo_vehiculo</stream_name>
+        </field>
+        <field>
+          <column_name>articulado</column_name>
+          <stream_name>articulado</stream_name>
+        </field>
+        <field>
+          <column_name>a&#xf1;o</column_name>
+          <stream_name>edad_vehiculo</stream_name>
+        </field>
+        <field>
+          <column_name>maniobra</column_name>
+          <stream_name>maniobra</stream_name>
+        </field>
+        <field>
+          <column_name>impacto</column_name>
+          <stream_name>impacto</stream_name>
+        </field>
+        <field>
+          <column_name>volante_izq</column_name>
+          <stream_name>volante_izq</stream_name>
+        </field>
+        <field>
+          <column_name>combustible</column_name>
+          <stream_name>combustible</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
