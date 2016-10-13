@@ -73,6 +73,27 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Agrupamos por clima para evitar duplicados</note>
+      <xloc>384</xloc>
+      <yloc>32</yloc>
+      <width>307</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>conex_clima</name>
@@ -102,9 +123,37 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>CSV file input</from><to>Mapeo de Valores</to><enabled>Y</enabled> </hop>
-  <hop> <from>Mapeo de Valores</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
+  <hop> <from>CSV file input</from><to>Codigos clima</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos clima</from><to>Agrupar clima</to><enabled>Y</enabled> </hop>
+  <hop> <from>Agrupar clima</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Agrupar clima</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>weather</name>
+        </field>
+      </group>
+      <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>512</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>CSV file input</name>
     <type>CsvInput</type>
@@ -116,7 +165,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Accidents_2015.min.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Accidents_2015.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -492,7 +541,7 @@
     </step>
 
   <step>
-    <name>Mapeo de Valores</name>
+    <name>Codigos clima</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -591,7 +640,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
+      <xloc>656</xloc>
       <yloc>96</yloc>
       <draw>Y</draw>
       </GUI>

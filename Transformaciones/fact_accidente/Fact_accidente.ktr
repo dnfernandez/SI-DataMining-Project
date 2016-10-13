@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Transformacion_conductor</name>
+    <name>Fact_accidente</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,107 +66,19 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2016&#x2f;10&#x2f;13 18&#x3a;43&#x3a;52.051</created_date>
+  <created_date>2016&#x2f;10&#x2f;13 19&#x3a;55&#x3a;31.618</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2016&#x2f;10&#x2f;13 18&#x3a;43&#x3a;52.051</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+  <modified_date>2016&#x2f;10&#x2f;13 19&#x3a;55&#x3a;31.618</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>Agrupamos conductores iguales para que no existan duplicados</note>
-      <xloc>832</xloc>
-      <yloc>80</yloc>
-      <width>435</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
-  <connection>
-    <name>Conex_Conductor</name>
-    <server>localhost</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>datamart_trafico</database>
-    <port>3306</port>
-    <username>si</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb18ac738fc0fc94</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Codigos rango edad</from><to>Valor Java Script Modificado</to><enabled>Y</enabled> </hop>
-  <hop> <from>Carga datos</from><to>Codigos sexo conductor</to><enabled>Y</enabled> </hop>
-  <hop> <from>Codigos sexo conductor</from><to>Codigos rango edad</to><enabled>Y</enabled> </hop>
-  <hop> <from>Valor Java Script Modificado</from><to>Agrupar conductores</to><enabled>Y</enabled> </hop>
-  <hop> <from>Agrupar conductores</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
+  <hop> <from>CSV file input</from><to>B&#xfffd;squeda en Base de Datos</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Agrupar conductores</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>Age_of_Driver</name>
-        </field>
-        <field>
-          <name>sexo_conductor</name>
-        </field>
-        <field>
-          <name>rango_edad</name>
-        </field>
-        <field>
-          <name>ebrio</name>
-        </field>
-      </group>
-      <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1008</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Carga datos</name>
+    <name>CSV file input</name>
     <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -176,7 +88,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Vehicles_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Accidents_2015.min.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -202,7 +114,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_Reference</name>
+        <name>Location_Easting_OSGR</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -213,7 +125,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_Type</name>
+        <name>Location_Northing_OSGR</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -224,7 +136,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Towing_and_Articulation</name>
+        <name>Longitude</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -235,7 +147,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_Manoeuvre</name>
+        <name>Latitude</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -246,7 +158,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_Location-Restricted_Lane</name>
+        <name>Police_Force</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -257,7 +169,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Junction_Location</name>
+        <name>Accident_Severity</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -268,7 +180,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Skidding_and_Overturning</name>
+        <name>Number_of_Vehicles</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -279,7 +191,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Hit_Object_in_Carriageway</name>
+        <name>Number_of_Casualties</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -290,7 +202,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_Leaving_Carriageway</name>
+        <name>Date</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -301,7 +213,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Hit_Object_off_Carriageway</name>
+        <name>Day_of_Week</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -312,7 +224,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>1st_Point_of_Impact</name>
+        <name>Time</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -323,7 +235,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Was_Vehicle_Left_Hand_Drive&#x3f;</name>
+        <name>Local_Authority_&#x28;District&#x29;</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -334,7 +246,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Journey_Purpose_of_Driver</name>
+        <name>Local_Authority_&#x28;Highway&#x29;</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -345,7 +257,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Sex_of_Driver</name>
+        <name>1st_Road_Class</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -356,7 +268,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Age_of_Driver</name>
+        <name>1st_Road_Number</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -367,7 +279,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Age_Band_of_Driver</name>
+        <name>Road_Type</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -378,7 +290,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Engine_Capacity_&#x28;CC&#x29;</name>
+        <name>Speed_limit</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -389,7 +301,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Propulsion_Code</name>
+        <name>Junction_Detail</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -400,7 +312,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Age_of_Vehicle</name>
+        <name>Junction_Control</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -411,7 +323,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Driver_IMD_Decile</name>
+        <name>2nd_Road_Class</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -422,7 +334,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Driver_Home_Area_Type</name>
+        <name>2nd_Road_Number</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -433,7 +345,106 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>Vehicle_IMD_Decile</name>
+        <name>Pedestrian_Crossing-Human_Control</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Pedestrian_Crossing-Physical_Facilities</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Light_Conditions</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Weather_Conditions</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Road_Surface_Conditions</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Special_Conditions_at_Site</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Carriageway_Hazards</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Urban_or_Rural_Area</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Did_Police_Officer_Attend_Scene_of_Accident</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>LSOA_of_Accident_Location</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -446,15 +457,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>160</xloc>
-      <yloc>192</yloc>
+      <xloc>200</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Codigos rango edad</name>
-    <type>ValueMapper</type>
+    <name>B&#xfffd;squeda en Base de Datos</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -463,187 +474,21 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <field_to_use>Age_Band_of_Driver</field_to_use>
-    <target_field>rango_edad</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>1</source_value>
-        <target_value>0 - 5</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>6 - 10</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>11 - 15</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>16 - 20</target_value>
-      </field>
-      <field>
-        <source_value>5</source_value>
-        <target_value>21 - 25</target_value>
-      </field>
-      <field>
-        <source_value>6</source_value>
-        <target_value>26 - 35</target_value>
-      </field>
-      <field>
-        <source_value>7</source_value>
-        <target_value>36 - 45</target_value>
-      </field>
-      <field>
-        <source_value>8</source_value>
-        <target_value>46 - 55</target_value>
-      </field>
-      <field>
-        <source_value>9</source_value>
-        <target_value>56 - 65</target_value>
-      </field>
-      <field>
-        <source_value>10</source_value>
-        <target_value>66 - 75</target_value>
-      </field>
-      <field>
-        <source_value>11</source_value>
-        <target_value>Over 75</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Data missing or out of range</target_value>
-      </field>
-    </fields>
+    <connection/>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>tabla de b&#xfffd;squeda</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>576</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Codigos sexo conductor</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <field_to_use>Sex_of_Driver</field_to_use>
-    <target_field>sexo_conductor</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>1</source_value>
-        <target_value>Male</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>Female</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>Not known</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Data missing or out of range</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>360</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Salida Tabla</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Conex_Conductor</connection>
-    <schema/>
-    <table>dim_conductor</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>sexo</column_name>
-          <stream_name>sexo_conductor</stream_name>
-        </field>
-        <field>
-          <column_name>edad</column_name>
-          <stream_name>Age_of_Driver</stream_name>
-        </field>
-        <field>
-          <column_name>rango_edad</column_name>
-          <stream_name>rango_edad</stream_name>
-        </field>
-        <field>
-          <column_name>ebrio</column_name>
-          <stream_name>ebrio</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1168</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Valor Java Script Modificado</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;var ebrio &#x3d; 0&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>ebrio</name>
-        <rename>ebrio</rename>
-        <type>Number</type>
-        <length>16</length>
-        <precision>2</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>800</xloc>
-      <yloc>192</yloc>
+      <xloc>400</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

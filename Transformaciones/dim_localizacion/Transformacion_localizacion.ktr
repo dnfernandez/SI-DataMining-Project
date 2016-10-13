@@ -69,10 +69,31 @@
   <created_date>2016&#x2f;10&#x2f;13 19&#x3a;11&#x3a;15.887</created_date>
   <modified_user>-</modified_user>
   <modified_date>2016&#x2f;10&#x2f;13 19&#x3a;11&#x3a;15.887</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Agrupamos los datos por localidad para evitar localidades duplicadas</note>
+      <xloc>320</xloc>
+      <yloc>96</yloc>
+      <width>476</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>Conex_Localizacion</name>
@@ -103,8 +124,36 @@
   </connection>
   <order>
   <hop> <from>Carga datos</from><to>Codigos Localidad</to><enabled>Y</enabled> </hop>
-  <hop> <from>Codigos Localidad</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos Localidad</from><to>Agrupa por localidad</to><enabled>Y</enabled> </hop>
+  <hop> <from>Agrupa por localidad</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Agrupa por localidad</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>localidad</name>
+        </field>
+      </group>
+      <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Carga datos</name>
     <type>CsvInput</type>
@@ -116,7 +165,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Accidents_2015.min.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Accidents_2015.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -2215,7 +2264,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>528</xloc>
+      <xloc>704</xloc>
       <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>

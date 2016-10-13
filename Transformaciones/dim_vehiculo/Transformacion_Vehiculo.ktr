@@ -73,6 +73,27 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Se cambian los codigos numericos por su string correspondiente y&#xd;&#xa; se agrupan los vehiculos para evitar repetidos</note>
+      <xloc>704</xloc>
+      <yloc>192</yloc>
+      <width>449</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>Conex_Vehiculo</name>
@@ -109,8 +130,54 @@
   <hop> <from>Codigos maniobra</from><to>Codigos impacto</to><enabled>Y</enabled> </hop>
   <hop> <from>Codigos impacto</from><to>Codigos volante izquierda</to><enabled>Y</enabled> </hop>
   <hop> <from>Codigos volante izquierda</from><to>Codigos combustible</to><enabled>Y</enabled> </hop>
-  <hop> <from>Codigos combustible</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos combustible</from><to>Agrupar vehiculos</to><enabled>Y</enabled> </hop>
+  <hop> <from>Agrupar vehiculos</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Agrupar vehiculos</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>articulado</name>
+        </field>
+        <field>
+          <name>combustible</name>
+        </field>
+        <field>
+          <name>edad_vehiculo</name>
+        </field>
+        <field>
+          <name>impacto</name>
+        </field>
+        <field>
+          <name>maniobra</name>
+        </field>
+        <field>
+          <name>tipo_vehiculo</name>
+        </field>
+        <field>
+          <name>volante_izq</name>
+        </field>
+      </group>
+      <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>544</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>CSV file input</name>
     <type>CsvInput</type>
@@ -122,7 +189,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Vehicles_2015.min.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Vehicles_2015.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -444,8 +511,236 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
+      <xloc>576</xloc>
       <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos combustible</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Propulsion_Code</field_to_use>
+    <target_field>combustible</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Petrol</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Heavy oil</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Electric</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Steam</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Gas</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Petrol&#x2f;Gas &#x28;LPG&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Gas&#x2f;Bi-fuel</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Hybrid electric</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Gas Diesel</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>New fuel technology</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Fuel cells</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Electric diesel</target_value>
+      </field>
+      <field>
+        <source_value>M</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos impacto</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>1st_Point_of_Impact</field_to_use>
+    <target_field>impacto</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>0</source_value>
+        <target_value>Did not impact</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Front</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Back</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Offside</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Nearside</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos maniobra</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Vehicle_Manoeuvre</field_to_use>
+    <target_field>maniobra</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Reversing</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Parked</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Waiting to go - held up</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Slowing or stopping</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Moving off</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>U-turn</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Turning left</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Waiting to turn left</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Turning right</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>Waiting to turn right</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Changing lane to left</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Changing lane to right</target_value>
+      </field>
+      <field>
+        <source_value>13</source_value>
+        <target_value>Overtaking moving vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>14</source_value>
+        <target_value>Overtaking static vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>15</source_value>
+        <target_value>Overtaking - nearside</target_value>
+      </field>
+      <field>
+        <source_value>16</source_value>
+        <target_value>Going ahead left-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>17</source_value>
+        <target_value>Going ahead right-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>18</source_value>
+        <target_value>Going ahead other</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -559,184 +854,6 @@
     </step>
 
   <step>
-    <name>Edad veh&#xed;culo</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var edad &#x3d; Age_of_Vehicle&#x3b;&#xd;&#xa;var edad_vehiculo&#x3d;&#x22;&#x22;&#x3b;&#xd;&#xa;&#xd;&#xa;if &#x28;edad &#x3d;&#x3d; -1&#x29;&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;0&#x3b;&#xd;&#xa;&#x7d;else&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;edad&#x3b;&#xd;&#xa;&#x7d;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>edad_vehiculo</name>
-        <rename>edad_vehiculo</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>512</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Codigos maniobra</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <field_to_use>Vehicle_Manoeuvre</field_to_use>
-    <target_field>maniobra</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>1</source_value>
-        <target_value>Reversing</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>Parked</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>Waiting to go - held up</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>Slowing or stopping</target_value>
-      </field>
-      <field>
-        <source_value>5</source_value>
-        <target_value>Moving off</target_value>
-      </field>
-      <field>
-        <source_value>6</source_value>
-        <target_value>U-turn</target_value>
-      </field>
-      <field>
-        <source_value>7</source_value>
-        <target_value>Turning left</target_value>
-      </field>
-      <field>
-        <source_value>8</source_value>
-        <target_value>Waiting to turn left</target_value>
-      </field>
-      <field>
-        <source_value>9</source_value>
-        <target_value>Turning right</target_value>
-      </field>
-      <field>
-        <source_value>10</source_value>
-        <target_value>Waiting to turn right</target_value>
-      </field>
-      <field>
-        <source_value>11</source_value>
-        <target_value>Changing lane to left</target_value>
-      </field>
-      <field>
-        <source_value>12</source_value>
-        <target_value>Changing lane to right</target_value>
-      </field>
-      <field>
-        <source_value>13</source_value>
-        <target_value>Overtaking moving vehicle - offside</target_value>
-      </field>
-      <field>
-        <source_value>14</source_value>
-        <target_value>Overtaking static vehicle - offside</target_value>
-      </field>
-      <field>
-        <source_value>15</source_value>
-        <target_value>Overtaking - nearside</target_value>
-      </field>
-      <field>
-        <source_value>16</source_value>
-        <target_value>Going ahead left-hand bend</target_value>
-      </field>
-      <field>
-        <source_value>17</source_value>
-        <target_value>Going ahead right-hand bend</target_value>
-      </field>
-      <field>
-        <source_value>18</source_value>
-        <target_value>Going ahead other</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Data missing or out of range</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Codigos impacto</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <field_to_use>1st_Point_of_Impact</field_to_use>
-    <target_field>impacto</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>0</source_value>
-        <target_value>Did not impact</target_value>
-      </field>
-      <field>
-        <source_value>1</source_value>
-        <target_value>Front</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>Back</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>Offside</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>Nearside</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Data missing or out of range</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>192</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Codigos volante izquierda</name>
     <type>ValueMapper</type>
     <description/>
@@ -773,8 +890,8 @@
     </step>
 
   <step>
-    <name>Codigos combustible</name>
-    <type>ValueMapper</type>
+    <name>Edad veh&#xed;culo</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -783,71 +900,21 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <field_to_use>Propulsion_Code</field_to_use>
-    <target_field>combustible</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>1</source_value>
-        <target_value>Petrol</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>Heavy oil</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>Electric</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>Steam</target_value>
-      </field>
-      <field>
-        <source_value>5</source_value>
-        <target_value>Gas</target_value>
-      </field>
-      <field>
-        <source_value>6</source_value>
-        <target_value>Petrol&#x2f;Gas &#x28;LPG&#x29;</target_value>
-      </field>
-      <field>
-        <source_value>7</source_value>
-        <target_value>Gas&#x2f;Bi-fuel</target_value>
-      </field>
-      <field>
-        <source_value>8</source_value>
-        <target_value>Hybrid electric</target_value>
-      </field>
-      <field>
-        <source_value>9</source_value>
-        <target_value>Gas Diesel</target_value>
-      </field>
-      <field>
-        <source_value>10</source_value>
-        <target_value>New fuel technology</target_value>
-      </field>
-      <field>
-        <source_value>11</source_value>
-        <target_value>Fuel cells</target_value>
-      </field>
-      <field>
-        <source_value>12</source_value>
-        <target_value>Electric diesel</target_value>
-      </field>
-      <field>
-        <source_value>M</source_value>
-        <target_value>Undefined</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Undefined</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var edad &#x3d; Age_of_Vehicle&#x3b;&#xd;&#xa;var edad_vehiculo&#x3d;&#x22;&#x22;&#x3b;&#xd;&#xa;&#xd;&#xa;if &#x28;edad &#x3d;&#x3d; -1&#x29;&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;0&#x3b;&#xd;&#xa;&#x7d;else&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;edad&#x3b;&#xd;&#xa;&#x7d;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>edad_vehiculo</name>
+        <rename>edad_vehiculo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>352</yloc>
+      <xloc>576</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -912,7 +979,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>528</xloc>
+      <xloc>704</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
