@@ -4,6 +4,7 @@
     <description/>
     <extended_description/>
     <job_version/>
+    <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
   <created_date>2016&#x2f;03&#x2f;06 22&#x3a;01&#x3a;01.224</created_date>
@@ -45,12 +46,12 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>tiempo_load</name>
+      <name>tiempo_fecha</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_load.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_fecha.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -83,7 +84,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_update_festivos.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_festivos.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -108,39 +109,6 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>80</yloc>
-      </entry>
-    <entry>
-      <name>tiempo_visperas</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_update_visperas.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>352</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
@@ -170,13 +138,88 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>560</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>tiempo_horario</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_horario.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>tiempo_carga</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;transf_tiempo_carga.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
       <yloc>80</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>tiempo_load</from>
+      <from>START</from>
+      <to>tiempo_fecha</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>tiempo_fecha</from>
       <to>tiempo_festivos</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -186,7 +229,7 @@
     </hop>
     <hop>
       <from>tiempo_festivos</from>
-      <to>tiempo_visperas</to>
+      <to>tiempo_horario</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -194,16 +237,16 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>tiempo_load</to>
+      <from>tiempo_horario</from>
+      <to>tiempo_carga</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>tiempo_visperas</from>
+      <from>tiempo_carga</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -214,5 +257,9 @@
   </hops>
   <notepads>
   </notepads>
+<attributes><group><name>JobRestart</name>
+<attribute><key>UniqueConnections</key>
+<value>N</value>
+</attribute></group></attributes>
 
 </job>
