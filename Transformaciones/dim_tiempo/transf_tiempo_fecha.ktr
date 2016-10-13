@@ -122,7 +122,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Create a Locale according to the specified language code&#xa;var locale &#x3d; new java.util.Locale&#x28;&#xa;    language_code.getString&#x28;&#x29;&#xa;,   country_code.getString&#x28;&#x29;&#xa;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;Create a calendar, use the specified initial date&#xa;var calendar &#x3d; new java.util.GregorianCalendar&#x28;locale&#x29;&#x3b;&#xa;calendar.setTime&#x28;initial_date.getDate&#x28;&#x29;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;set the calendar to the current date by adding DaySequence days&#xa;calendar.add&#x28;calendar.DAY_OF_MONTH,DaySequence.getInteger&#x28;&#x29; - 1&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;get the calendar date&#xa;var tiempo_value &#x3d; new java.util.Date&#x28;calendar.getTimeInMillis&#x28;&#x29;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;day in month&#x3a; 1..31&#xd;&#xa;var simpleDateFormat   &#x3d; java.text.SimpleDateFormat&#x28;&#x22;d&#x22;,locale&#x29;&#x3b;&#xa;var dia     &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;en-us example&#x3a; day in week &#x28;1,7&#x29;&#xa;simpleDateFormat.applyPattern&#x28;&#x22;u&#x22;&#x29;&#x3b;&#xa;var dia_semana   &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xd;&#xa;if &#x28;dia_semana &#x3c; 7&#x29;&#x7b;&#xd;&#xa;	dia_semana&#x2b;&#x2b;&#x3b;&#xd;&#xa;&#x7d; else &#x7b;&#xd;&#xa;	dia_semana &#x3d; 1&#x3b;	&#xd;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;en-us example&#x3a; month in year&#x3a; &#x28;1,12&#x29;&#xa;simpleDateFormat.applyPattern&#x28;&#x22;MM&#x22;&#x29;&#x3b;&#xa;var mes         &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;4 digit representation of the year, example&#x3a; 2015&#xa;simpleDateFormat.applyPattern&#x28;&#x22;yyyy&#x22;&#x29;&#x3b;&#xa;var anho &#x3d; &#x22;&#x22; &#x2b; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; fecha dd&#x2f;MM&#x2f;yyyy&#x28;01&#x2f;01&#x2f;2015&#x29;&#xd;&#xa;simpleDateFormat.applyPattern&#x28;&#x22;dd&#x2f;MM&#x2f;yyyy&#x22;&#x29;&#x3b;&#xd;&#xa;var fecha &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#xd;&#xa;&#xd;&#xa;var festivo &#x3d; 0&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Create a Locale according to the specified language code&#xa;var locale &#x3d; new java.util.Locale&#x28;&#xa;    language_code.getString&#x28;&#x29;&#xa;,   country_code.getString&#x28;&#x29;&#xa;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;Create a calendar, use the specified initial date&#xa;var calendar &#x3d; new java.util.GregorianCalendar&#x28;locale&#x29;&#x3b;&#xa;calendar.setTime&#x28;initial_date.getDate&#x28;&#x29;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;set the calendar to the current date by adding DaySequence days&#xa;calendar.add&#x28;calendar.DAY_OF_MONTH,DaySequence.getInteger&#x28;&#x29; - 1&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;get the calendar date&#xa;var tiempo_value &#x3d; new java.util.Date&#x28;calendar.getTimeInMillis&#x28;&#x29;&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;day in month&#x3a; 1..31&#xd;&#xa;var simpleDateFormat   &#x3d; java.text.SimpleDateFormat&#x28;&#x22;d&#x22;,locale&#x29;&#x3b;&#xa;var dia     &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;en-us example&#x3a; day in week &#x28;1,7&#x29;&#xa;simpleDateFormat.applyPattern&#x28;&#x22;u&#x22;&#x29;&#x3b;&#xa;var dia_semana   &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xd;&#xa;if &#x28;dia_semana &#x3c; 7&#x29;&#x7b;&#xd;&#xa;	dia_semana&#x2b;&#x2b;&#x3b;&#xd;&#xa;&#x7d; else &#x7b;&#xd;&#xa;	dia_semana &#x3d; 1&#x3b;	&#xd;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;en-us example&#x3a; month in year&#x3a; &#x28;1,12&#x29;&#xa;simpleDateFormat.applyPattern&#x28;&#x22;MM&#x22;&#x29;&#x3b;&#xa;var mes         &#x3d; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f;4 digit representation of the year, example&#x3a; 2015&#xa;simpleDateFormat.applyPattern&#x28;&#x22;yyyy&#x22;&#x29;&#x3b;&#xa;var anho &#x3d; &#x22;&#x22; &#x2b; simpleDateFormat.format&#x28;tiempo_value&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var festivo &#x3d; 0&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>dia_semana</name>
         <rename>dia_semana</rename>
         <type>String</type>
@@ -289,7 +289,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Transformaciones&#x5c;dim_tiempo&#x5c;fecha</name>
+      <name>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Transformaciones&#x5c;dim_tiempo&#x5c;fecha_temp</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -307,18 +307,6 @@
       <splitevery>0</splitevery>
     </file>
     <fields>
-      <field>
-        <name>fecha</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
       <field>
         <name>anho</name>
         <type>String</type>
