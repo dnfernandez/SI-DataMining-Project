@@ -44,7 +44,7 @@ create database datamart_trafico default character set utf8 default collate utf8
 		sexo varchar(60),
 		edad int(3),
 		ebrio boolean,
-		rango_edad int(2)
+		rango_edad varchar(60)
 	);
 	
 	create table dim_localizacion(
@@ -59,7 +59,7 @@ create database datamart_trafico default character set utf8 default collate utf8
 		edad int(3),
 		rango_edad int(2),
 		gravedad varchar(60),
-		pasajero boolean
+		pasajero varchar(60)
 	);
 	
 	create table fact_accidente (
