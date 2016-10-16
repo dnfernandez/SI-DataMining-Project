@@ -69,16 +69,3404 @@
   <created_date>2016&#x2f;10&#x2f;13 19&#x3a;55&#x3a;31.618</created_date>
   <modified_user>-</modified_user>
   <modified_date>2016&#x2f;10&#x2f;13 19&#x3a;55&#x3a;31.618</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>Conexion_datamart_trafico</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>datamart_trafico</database>
+    <port>3306</port>
+    <username>si</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb18ac738fc0fc94</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>CSV file input</from><to>B&#xfffd;squeda en Base de Datos</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos Localidad</from><to>Obtencion id localizacion</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos clima</from><to>Obtencion de id de clima</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapeo de peligros_calzada</from><to>Mapeo de urbano</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapeo de urbano</from><to>Obtencion id via</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapeo estado_via</from><to>Mapeo de peligros_calzada</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapeo n_carriles</from><to>Mapeo estado_via</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapeo road_type</from><to>Mapeo n_carriles</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion de id de clima</from><to>Mapeo road_type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion id localizacion</from><to>Codigos sexo conductor</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion id via</from><to>Codigos Localidad</to><enabled>Y</enabled> </hop>
+  <hop> <from>Transformar estilo fecha</from><to>descomponer fecha</to><enabled>Y</enabled> </hop>
+  <hop> <from>descomponer fecha</from><to>Obtencion id tiempo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos rango edad</from><to>Obtencion id conductor</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos sexo conductor</from><to>Codigos rango edad</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion id conductor</from><to>Codigos tipo vehiculo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos articulado</from><to>Edad veh&#xed;culo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos combustible</from><to>Obtencion id vehiculo</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos impacto</from><to>Codigos volante izquierda</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos maniobra</from><to>Codigos impacto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos tipo vehiculo</from><to>Codigos articulado</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos volante izquierda</from><to>Codigos combustible</to><enabled>Y</enabled> </hop>
+  <hop> <from>Edad veh&#xed;culo</from><to>Codigos maniobra</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion id vehiculo</from><to>Transformar estilo fecha</to><enabled>Y</enabled> </hop>
+  <hop> <from>Accidents</from><to>Merge Accident_Index</to><enabled>Y</enabled> </hop>
+  <hop> <from>Vehicles</from><to>Merge Accident_Index</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Accident_Index</from><to>Codigos clima</to><enabled>Y</enabled> </hop>
+  <hop> <from>Obtencion id tiempo</from><to>Salida Fichero de Texto</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>CSV file input</name>
+    <name>Codigos Localidad</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Local_Authority_&#x28;District&#x29;</field_to_use>
+    <target_field>localidad</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Westminster</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Camden</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Islington</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Hackney</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Tower Hamlets</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Greenwich</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Lewisham</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Southwark</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Lambeth</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>Wandsworth</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Hammersmith and Fulham</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Kensington and Chelsea</target_value>
+      </field>
+      <field>
+        <source_value>13</source_value>
+        <target_value>Waltham Forest</target_value>
+      </field>
+      <field>
+        <source_value>14</source_value>
+        <target_value>Redbridge</target_value>
+      </field>
+      <field>
+        <source_value>15</source_value>
+        <target_value>Havering</target_value>
+      </field>
+      <field>
+        <source_value>16</source_value>
+        <target_value>Barking and Dagenham</target_value>
+      </field>
+      <field>
+        <source_value>17</source_value>
+        <target_value>Newham</target_value>
+      </field>
+      <field>
+        <source_value>18</source_value>
+        <target_value>Bexley</target_value>
+      </field>
+      <field>
+        <source_value>19</source_value>
+        <target_value>Bromley</target_value>
+      </field>
+      <field>
+        <source_value>20</source_value>
+        <target_value>Croydon</target_value>
+      </field>
+      <field>
+        <source_value>21</source_value>
+        <target_value>Sutton</target_value>
+      </field>
+      <field>
+        <source_value>22</source_value>
+        <target_value>Merton</target_value>
+      </field>
+      <field>
+        <source_value>23</source_value>
+        <target_value>Kingston upon Thames</target_value>
+      </field>
+      <field>
+        <source_value>24</source_value>
+        <target_value>Richmond upon Thames</target_value>
+      </field>
+      <field>
+        <source_value>25</source_value>
+        <target_value>Hounslow</target_value>
+      </field>
+      <field>
+        <source_value>26</source_value>
+        <target_value>Hillingdon</target_value>
+      </field>
+      <field>
+        <source_value>27</source_value>
+        <target_value>Ealing</target_value>
+      </field>
+      <field>
+        <source_value>28</source_value>
+        <target_value>Brent</target_value>
+      </field>
+      <field>
+        <source_value>29</source_value>
+        <target_value>Harrow</target_value>
+      </field>
+      <field>
+        <source_value>30</source_value>
+        <target_value>Barnet</target_value>
+      </field>
+      <field>
+        <source_value>31</source_value>
+        <target_value>Haringey</target_value>
+      </field>
+      <field>
+        <source_value>32</source_value>
+        <target_value>Enfield</target_value>
+      </field>
+      <field>
+        <source_value>33</source_value>
+        <target_value>Hertsmere</target_value>
+      </field>
+      <field>
+        <source_value>38</source_value>
+        <target_value>Epsom and Ewell</target_value>
+      </field>
+      <field>
+        <source_value>40</source_value>
+        <target_value>Spelthorne</target_value>
+      </field>
+      <field>
+        <source_value>57</source_value>
+        <target_value>London Airport &#x28;Heathrow&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>60</source_value>
+        <target_value>Allerdale</target_value>
+      </field>
+      <field>
+        <source_value>61</source_value>
+        <target_value>Barrow-in-Furness</target_value>
+      </field>
+      <field>
+        <source_value>62</source_value>
+        <target_value>Carlisle</target_value>
+      </field>
+      <field>
+        <source_value>63</source_value>
+        <target_value>Copeland</target_value>
+      </field>
+      <field>
+        <source_value>64</source_value>
+        <target_value>Eden</target_value>
+      </field>
+      <field>
+        <source_value>65</source_value>
+        <target_value>South Lakeland</target_value>
+      </field>
+      <field>
+        <source_value>70</source_value>
+        <target_value>Blackburn with Darwen</target_value>
+      </field>
+      <field>
+        <source_value>71</source_value>
+        <target_value>Blackpool</target_value>
+      </field>
+      <field>
+        <source_value>72</source_value>
+        <target_value>Burnley</target_value>
+      </field>
+      <field>
+        <source_value>73</source_value>
+        <target_value>Chorley</target_value>
+      </field>
+      <field>
+        <source_value>74</source_value>
+        <target_value>Fylde</target_value>
+      </field>
+      <field>
+        <source_value>75</source_value>
+        <target_value>Hyndburn</target_value>
+      </field>
+      <field>
+        <source_value>76</source_value>
+        <target_value>Lancaster</target_value>
+      </field>
+      <field>
+        <source_value>77</source_value>
+        <target_value>Pendle</target_value>
+      </field>
+      <field>
+        <source_value>79</source_value>
+        <target_value>Preston</target_value>
+      </field>
+      <field>
+        <source_value>80</source_value>
+        <target_value>Ribble Valley</target_value>
+      </field>
+      <field>
+        <source_value>82</source_value>
+        <target_value>Rossendale</target_value>
+      </field>
+      <field>
+        <source_value>83</source_value>
+        <target_value>South Ribble</target_value>
+      </field>
+      <field>
+        <source_value>84</source_value>
+        <target_value>West Lancashire</target_value>
+      </field>
+      <field>
+        <source_value>85</source_value>
+        <target_value>Wyre</target_value>
+      </field>
+      <field>
+        <source_value>90</source_value>
+        <target_value>Knowsley</target_value>
+      </field>
+      <field>
+        <source_value>91</source_value>
+        <target_value>Liverpool</target_value>
+      </field>
+      <field>
+        <source_value>92</source_value>
+        <target_value>St. Helens</target_value>
+      </field>
+      <field>
+        <source_value>93</source_value>
+        <target_value>Sefton</target_value>
+      </field>
+      <field>
+        <source_value>95</source_value>
+        <target_value>Wirral</target_value>
+      </field>
+      <field>
+        <source_value>100</source_value>
+        <target_value>Bolton</target_value>
+      </field>
+      <field>
+        <source_value>101</source_value>
+        <target_value>Bury</target_value>
+      </field>
+      <field>
+        <source_value>102</source_value>
+        <target_value>Manchester</target_value>
+      </field>
+      <field>
+        <source_value>104</source_value>
+        <target_value>Oldham</target_value>
+      </field>
+      <field>
+        <source_value>106</source_value>
+        <target_value>Rochdale</target_value>
+      </field>
+      <field>
+        <source_value>107</source_value>
+        <target_value>Salford</target_value>
+      </field>
+      <field>
+        <source_value>109</source_value>
+        <target_value>Stockport</target_value>
+      </field>
+      <field>
+        <source_value>110</source_value>
+        <target_value>Tameside</target_value>
+      </field>
+      <field>
+        <source_value>112</source_value>
+        <target_value>Trafford</target_value>
+      </field>
+      <field>
+        <source_value>114</source_value>
+        <target_value>Wigan</target_value>
+      </field>
+      <field>
+        <source_value>120</source_value>
+        <target_value>Chester</target_value>
+      </field>
+      <field>
+        <source_value>121</source_value>
+        <target_value>Congleton</target_value>
+      </field>
+      <field>
+        <source_value>122</source_value>
+        <target_value>Crewe and Nantwich</target_value>
+      </field>
+      <field>
+        <source_value>123</source_value>
+        <target_value>Ellesmere Port and Neston</target_value>
+      </field>
+      <field>
+        <source_value>124</source_value>
+        <target_value>Halton</target_value>
+      </field>
+      <field>
+        <source_value>126</source_value>
+        <target_value>Macclesfield</target_value>
+      </field>
+      <field>
+        <source_value>127</source_value>
+        <target_value>Vale Royal</target_value>
+      </field>
+      <field>
+        <source_value>128</source_value>
+        <target_value>Warrington</target_value>
+      </field>
+      <field>
+        <source_value>129</source_value>
+        <target_value>Cheshire East</target_value>
+      </field>
+      <field>
+        <source_value>130</source_value>
+        <target_value>Cheshire West and Chester</target_value>
+      </field>
+      <field>
+        <source_value>139</source_value>
+        <target_value>Northumberland</target_value>
+      </field>
+      <field>
+        <source_value>140</source_value>
+        <target_value>Alnwick</target_value>
+      </field>
+      <field>
+        <source_value>141</source_value>
+        <target_value>Berwick-upon-Tweed</target_value>
+      </field>
+      <field>
+        <source_value>142</source_value>
+        <target_value>Blyth Valley</target_value>
+      </field>
+      <field>
+        <source_value>143</source_value>
+        <target_value>Castle Morpeth</target_value>
+      </field>
+      <field>
+        <source_value>144</source_value>
+        <target_value>Tynedale</target_value>
+      </field>
+      <field>
+        <source_value>145</source_value>
+        <target_value>Wansbeck</target_value>
+      </field>
+      <field>
+        <source_value>146</source_value>
+        <target_value>Gateshead</target_value>
+      </field>
+      <field>
+        <source_value>147</source_value>
+        <target_value>Newcastle upon Tyne</target_value>
+      </field>
+      <field>
+        <source_value>148</source_value>
+        <target_value>North Tyneside</target_value>
+      </field>
+      <field>
+        <source_value>149</source_value>
+        <target_value>South Tyneside</target_value>
+      </field>
+      <field>
+        <source_value>150</source_value>
+        <target_value>Sunderland</target_value>
+      </field>
+      <field>
+        <source_value>160</source_value>
+        <target_value>Chester-le-Street</target_value>
+      </field>
+      <field>
+        <source_value>161</source_value>
+        <target_value>Darlington</target_value>
+      </field>
+      <field>
+        <source_value>162</source_value>
+        <target_value>Derwentside</target_value>
+      </field>
+      <field>
+        <source_value>163</source_value>
+        <target_value>Durham</target_value>
+      </field>
+      <field>
+        <source_value>164</source_value>
+        <target_value>Easington</target_value>
+      </field>
+      <field>
+        <source_value>165</source_value>
+        <target_value>Sedgefield</target_value>
+      </field>
+      <field>
+        <source_value>166</source_value>
+        <target_value>Teesdale</target_value>
+      </field>
+      <field>
+        <source_value>168</source_value>
+        <target_value>Wear Valley</target_value>
+      </field>
+      <field>
+        <source_value>169</source_value>
+        <target_value>County Durham</target_value>
+      </field>
+      <field>
+        <source_value>180</source_value>
+        <target_value>Craven</target_value>
+      </field>
+      <field>
+        <source_value>181</source_value>
+        <target_value>Hambleton</target_value>
+      </field>
+      <field>
+        <source_value>182</source_value>
+        <target_value>Harrogate</target_value>
+      </field>
+      <field>
+        <source_value>184</source_value>
+        <target_value>Richmondshire</target_value>
+      </field>
+      <field>
+        <source_value>185</source_value>
+        <target_value>Ryedale</target_value>
+      </field>
+      <field>
+        <source_value>186</source_value>
+        <target_value>Scarborough</target_value>
+      </field>
+      <field>
+        <source_value>187</source_value>
+        <target_value>Selby</target_value>
+      </field>
+      <field>
+        <source_value>189</source_value>
+        <target_value>York</target_value>
+      </field>
+      <field>
+        <source_value>200</source_value>
+        <target_value>Bradford</target_value>
+      </field>
+      <field>
+        <source_value>202</source_value>
+        <target_value>Calderdale</target_value>
+      </field>
+      <field>
+        <source_value>203</source_value>
+        <target_value>Kirklees</target_value>
+      </field>
+      <field>
+        <source_value>204</source_value>
+        <target_value>Leeds</target_value>
+      </field>
+      <field>
+        <source_value>206</source_value>
+        <target_value>Wakefield</target_value>
+      </field>
+      <field>
+        <source_value>210</source_value>
+        <target_value>Barnsley</target_value>
+      </field>
+      <field>
+        <source_value>211</source_value>
+        <target_value>Doncaster</target_value>
+      </field>
+      <field>
+        <source_value>213</source_value>
+        <target_value>Rotherham</target_value>
+      </field>
+      <field>
+        <source_value>215</source_value>
+        <target_value>Sheffield</target_value>
+      </field>
+      <field>
+        <source_value>228</source_value>
+        <target_value>Kingston upon Hull, City of</target_value>
+      </field>
+      <field>
+        <source_value>231</source_value>
+        <target_value>East Riding of Yorkshire</target_value>
+      </field>
+      <field>
+        <source_value>232</source_value>
+        <target_value>North Lincolnshire</target_value>
+      </field>
+      <field>
+        <source_value>233</source_value>
+        <target_value>North East Lincolnshire</target_value>
+      </field>
+      <field>
+        <source_value>240</source_value>
+        <target_value>Hartlepool</target_value>
+      </field>
+      <field>
+        <source_value>241</source_value>
+        <target_value>Redcar and Cleveland</target_value>
+      </field>
+      <field>
+        <source_value>243</source_value>
+        <target_value>Middlesbrough</target_value>
+      </field>
+      <field>
+        <source_value>245</source_value>
+        <target_value>Stockton-on-Tees</target_value>
+      </field>
+      <field>
+        <source_value>250</source_value>
+        <target_value>Cannock Chase</target_value>
+      </field>
+      <field>
+        <source_value>251</source_value>
+        <target_value>East Staffordshire</target_value>
+      </field>
+      <field>
+        <source_value>252</source_value>
+        <target_value>Lichfield</target_value>
+      </field>
+      <field>
+        <source_value>253</source_value>
+        <target_value>Newcastle-under-Lyme</target_value>
+      </field>
+      <field>
+        <source_value>254</source_value>
+        <target_value>South Staffordshire</target_value>
+      </field>
+      <field>
+        <source_value>255</source_value>
+        <target_value>Stafford</target_value>
+      </field>
+      <field>
+        <source_value>256</source_value>
+        <target_value>Staffordshire Moorlands</target_value>
+      </field>
+      <field>
+        <source_value>257</source_value>
+        <target_value>Stoke-on-Trent</target_value>
+      </field>
+      <field>
+        <source_value>258</source_value>
+        <target_value>Tamworth</target_value>
+      </field>
+      <field>
+        <source_value>270</source_value>
+        <target_value>Bromsgrove</target_value>
+      </field>
+      <field>
+        <source_value>273</source_value>
+        <target_value>Malvern Hills</target_value>
+      </field>
+      <field>
+        <source_value>274</source_value>
+        <target_value>Redditch</target_value>
+      </field>
+      <field>
+        <source_value>276</source_value>
+        <target_value>Worcester</target_value>
+      </field>
+      <field>
+        <source_value>277</source_value>
+        <target_value>Wychavon</target_value>
+      </field>
+      <field>
+        <source_value>278</source_value>
+        <target_value>Wyre Forest</target_value>
+      </field>
+      <field>
+        <source_value>279</source_value>
+        <target_value>Bridgnorth</target_value>
+      </field>
+      <field>
+        <source_value>280</source_value>
+        <target_value>North Shropshire</target_value>
+      </field>
+      <field>
+        <source_value>281</source_value>
+        <target_value>Oswestry</target_value>
+      </field>
+      <field>
+        <source_value>282</source_value>
+        <target_value>Shrewsbury and Atcham</target_value>
+      </field>
+      <field>
+        <source_value>283</source_value>
+        <target_value>South Shropshire</target_value>
+      </field>
+      <field>
+        <source_value>284</source_value>
+        <target_value>Telford and Wrekin</target_value>
+      </field>
+      <field>
+        <source_value>285</source_value>
+        <target_value>Herefordshire, County of </target_value>
+      </field>
+      <field>
+        <source_value>286</source_value>
+        <target_value>Shropshire</target_value>
+      </field>
+      <field>
+        <source_value>290</source_value>
+        <target_value>North Warwickshire</target_value>
+      </field>
+      <field>
+        <source_value>291</source_value>
+        <target_value>Nuneaton and Bedworth</target_value>
+      </field>
+      <field>
+        <source_value>292</source_value>
+        <target_value>Rugby </target_value>
+      </field>
+      <field>
+        <source_value>293</source_value>
+        <target_value>Stratford-upon-Avon</target_value>
+      </field>
+      <field>
+        <source_value>294</source_value>
+        <target_value>Warwick</target_value>
+      </field>
+      <field>
+        <source_value>300</source_value>
+        <target_value>Birmingham</target_value>
+      </field>
+      <field>
+        <source_value>302</source_value>
+        <target_value>Coventry</target_value>
+      </field>
+      <field>
+        <source_value>303</source_value>
+        <target_value>Dudley</target_value>
+      </field>
+      <field>
+        <source_value>305</source_value>
+        <target_value>Sandwell</target_value>
+      </field>
+      <field>
+        <source_value>306</source_value>
+        <target_value>Solihull</target_value>
+      </field>
+      <field>
+        <source_value>307</source_value>
+        <target_value>Walsall</target_value>
+      </field>
+      <field>
+        <source_value>309</source_value>
+        <target_value>Wolverhampton</target_value>
+      </field>
+      <field>
+        <source_value>320</source_value>
+        <target_value>Amber Valley</target_value>
+      </field>
+      <field>
+        <source_value>321</source_value>
+        <target_value>Bolsover</target_value>
+      </field>
+      <field>
+        <source_value>322</source_value>
+        <target_value>Chesterfield</target_value>
+      </field>
+      <field>
+        <source_value>323</source_value>
+        <target_value>Derby</target_value>
+      </field>
+      <field>
+        <source_value>324</source_value>
+        <target_value>Erewash</target_value>
+      </field>
+      <field>
+        <source_value>325</source_value>
+        <target_value>High Peak</target_value>
+      </field>
+      <field>
+        <source_value>327</source_value>
+        <target_value>North East Derbyshire</target_value>
+      </field>
+      <field>
+        <source_value>328</source_value>
+        <target_value>South Derbyshire</target_value>
+      </field>
+      <field>
+        <source_value>329</source_value>
+        <target_value>Derbyshire Dales</target_value>
+      </field>
+      <field>
+        <source_value>340</source_value>
+        <target_value>Ashfield</target_value>
+      </field>
+      <field>
+        <source_value>341</source_value>
+        <target_value>Bassetlaw</target_value>
+      </field>
+      <field>
+        <source_value>342</source_value>
+        <target_value>Broxtowe</target_value>
+      </field>
+      <field>
+        <source_value>343</source_value>
+        <target_value>Gedling</target_value>
+      </field>
+      <field>
+        <source_value>344</source_value>
+        <target_value>Mansfield</target_value>
+      </field>
+      <field>
+        <source_value>345</source_value>
+        <target_value>Newark and Sherwood</target_value>
+      </field>
+      <field>
+        <source_value>346</source_value>
+        <target_value>Nottingham</target_value>
+      </field>
+      <field>
+        <source_value>347</source_value>
+        <target_value>Rushcliffe</target_value>
+      </field>
+      <field>
+        <source_value>350</source_value>
+        <target_value>Boston</target_value>
+      </field>
+      <field>
+        <source_value>351</source_value>
+        <target_value>East Lindsey</target_value>
+      </field>
+      <field>
+        <source_value>352</source_value>
+        <target_value>Lincoln</target_value>
+      </field>
+      <field>
+        <source_value>353</source_value>
+        <target_value>North Kesteven</target_value>
+      </field>
+      <field>
+        <source_value>354</source_value>
+        <target_value>South Holland</target_value>
+      </field>
+      <field>
+        <source_value>355</source_value>
+        <target_value>South Kesteven</target_value>
+      </field>
+      <field>
+        <source_value>356</source_value>
+        <target_value>West Lindsey</target_value>
+      </field>
+      <field>
+        <source_value>360</source_value>
+        <target_value>Blaby</target_value>
+      </field>
+      <field>
+        <source_value>361</source_value>
+        <target_value>Hinckley and Bosworth</target_value>
+      </field>
+      <field>
+        <source_value>362</source_value>
+        <target_value>Charnwood</target_value>
+      </field>
+      <field>
+        <source_value>363</source_value>
+        <target_value>Harborough</target_value>
+      </field>
+      <field>
+        <source_value>364</source_value>
+        <target_value>Leicester</target_value>
+      </field>
+      <field>
+        <source_value>365</source_value>
+        <target_value>Melton</target_value>
+      </field>
+      <field>
+        <source_value>366</source_value>
+        <target_value>North West Leicestershire</target_value>
+      </field>
+      <field>
+        <source_value>367</source_value>
+        <target_value>Oadby and Wigston</target_value>
+      </field>
+      <field>
+        <source_value>368</source_value>
+        <target_value>Rutland</target_value>
+      </field>
+      <field>
+        <source_value>380</source_value>
+        <target_value>Corby</target_value>
+      </field>
+      <field>
+        <source_value>381</source_value>
+        <target_value>Daventry</target_value>
+      </field>
+      <field>
+        <source_value>382</source_value>
+        <target_value>East Northamptonshire</target_value>
+      </field>
+      <field>
+        <source_value>383</source_value>
+        <target_value>Kettering</target_value>
+      </field>
+      <field>
+        <source_value>384</source_value>
+        <target_value>Northampton</target_value>
+      </field>
+      <field>
+        <source_value>385</source_value>
+        <target_value>South Northamptonshire</target_value>
+      </field>
+      <field>
+        <source_value>386</source_value>
+        <target_value>Wellingborough</target_value>
+      </field>
+      <field>
+        <source_value>390</source_value>
+        <target_value>Cambridge</target_value>
+      </field>
+      <field>
+        <source_value>391</source_value>
+        <target_value>East Cambridgeshire</target_value>
+      </field>
+      <field>
+        <source_value>392</source_value>
+        <target_value>Fenland</target_value>
+      </field>
+      <field>
+        <source_value>393</source_value>
+        <target_value>Huntingdonshire</target_value>
+      </field>
+      <field>
+        <source_value>394</source_value>
+        <target_value>Peterborough</target_value>
+      </field>
+      <field>
+        <source_value>395</source_value>
+        <target_value>South Cambridgeshire</target_value>
+      </field>
+      <field>
+        <source_value>400</source_value>
+        <target_value>Breckland</target_value>
+      </field>
+      <field>
+        <source_value>401</source_value>
+        <target_value>Broadland</target_value>
+      </field>
+      <field>
+        <source_value>402</source_value>
+        <target_value>Great Yarmouth</target_value>
+      </field>
+      <field>
+        <source_value>404</source_value>
+        <target_value>Norwich</target_value>
+      </field>
+      <field>
+        <source_value>405</source_value>
+        <target_value>North Norfolk</target_value>
+      </field>
+      <field>
+        <source_value>406</source_value>
+        <target_value>South Norfolk</target_value>
+      </field>
+      <field>
+        <source_value>407</source_value>
+        <target_value>King&#x27;s Lynn and West Norfolk</target_value>
+      </field>
+      <field>
+        <source_value>410</source_value>
+        <target_value>Babergh</target_value>
+      </field>
+      <field>
+        <source_value>411</source_value>
+        <target_value>Forest Heath</target_value>
+      </field>
+      <field>
+        <source_value>412</source_value>
+        <target_value>Ipswich</target_value>
+      </field>
+      <field>
+        <source_value>413</source_value>
+        <target_value>Mid Suffolk</target_value>
+      </field>
+      <field>
+        <source_value>414</source_value>
+        <target_value>St. Edmundsbury</target_value>
+      </field>
+      <field>
+        <source_value>415</source_value>
+        <target_value>Suffolk Coastal</target_value>
+      </field>
+      <field>
+        <source_value>416</source_value>
+        <target_value>Waveney</target_value>
+      </field>
+      <field>
+        <source_value>420</source_value>
+        <target_value>Bedford</target_value>
+      </field>
+      <field>
+        <source_value>421</source_value>
+        <target_value>Luton</target_value>
+      </field>
+      <field>
+        <source_value>422</source_value>
+        <target_value>Mid Bedfordshire</target_value>
+      </field>
+      <field>
+        <source_value>423</source_value>
+        <target_value>South Bedfordshire</target_value>
+      </field>
+      <field>
+        <source_value>424</source_value>
+        <target_value>Central Bedfordshire</target_value>
+      </field>
+      <field>
+        <source_value>430</source_value>
+        <target_value>Broxbourne</target_value>
+      </field>
+      <field>
+        <source_value>431</source_value>
+        <target_value>Dacorum</target_value>
+      </field>
+      <field>
+        <source_value>432</source_value>
+        <target_value>East Hertfordshire</target_value>
+      </field>
+      <field>
+        <source_value>433</source_value>
+        <target_value>North Hertfordshire</target_value>
+      </field>
+      <field>
+        <source_value>434</source_value>
+        <target_value>St. Albans</target_value>
+      </field>
+      <field>
+        <source_value>435</source_value>
+        <target_value>Stevenage</target_value>
+      </field>
+      <field>
+        <source_value>436</source_value>
+        <target_value>Three Rivers</target_value>
+      </field>
+      <field>
+        <source_value>437</source_value>
+        <target_value>Watford</target_value>
+      </field>
+      <field>
+        <source_value>438</source_value>
+        <target_value>Welwyn Hatfield</target_value>
+      </field>
+      <field>
+        <source_value>450</source_value>
+        <target_value>Basildon</target_value>
+      </field>
+      <field>
+        <source_value>451</source_value>
+        <target_value>Braintree</target_value>
+      </field>
+      <field>
+        <source_value>452</source_value>
+        <target_value>Brentwood</target_value>
+      </field>
+      <field>
+        <source_value>453</source_value>
+        <target_value>Castle Point</target_value>
+      </field>
+      <field>
+        <source_value>454</source_value>
+        <target_value>Chelmsford</target_value>
+      </field>
+      <field>
+        <source_value>455</source_value>
+        <target_value>Colchester</target_value>
+      </field>
+      <field>
+        <source_value>456</source_value>
+        <target_value>Epping Forest</target_value>
+      </field>
+      <field>
+        <source_value>457</source_value>
+        <target_value>Harlow</target_value>
+      </field>
+      <field>
+        <source_value>458</source_value>
+        <target_value>Maldon</target_value>
+      </field>
+      <field>
+        <source_value>459</source_value>
+        <target_value>Rochford</target_value>
+      </field>
+      <field>
+        <source_value>460</source_value>
+        <target_value>Southend-on-Sea</target_value>
+      </field>
+      <field>
+        <source_value>461</source_value>
+        <target_value>Tendring</target_value>
+      </field>
+      <field>
+        <source_value>462</source_value>
+        <target_value>Thurrock</target_value>
+      </field>
+      <field>
+        <source_value>463</source_value>
+        <target_value>Uttlesford</target_value>
+      </field>
+      <field>
+        <source_value>470</source_value>
+        <target_value>Bracknell Forest</target_value>
+      </field>
+      <field>
+        <source_value>471</source_value>
+        <target_value>West Berkshire</target_value>
+      </field>
+      <field>
+        <source_value>472</source_value>
+        <target_value>Reading</target_value>
+      </field>
+      <field>
+        <source_value>473</source_value>
+        <target_value>Slough</target_value>
+      </field>
+      <field>
+        <source_value>474</source_value>
+        <target_value>Windsor and Maidenhead</target_value>
+      </field>
+      <field>
+        <source_value>475</source_value>
+        <target_value>Wokingham</target_value>
+      </field>
+      <field>
+        <source_value>476</source_value>
+        <target_value>Aylesbury Vale</target_value>
+      </field>
+      <field>
+        <source_value>477</source_value>
+        <target_value>South Bucks</target_value>
+      </field>
+      <field>
+        <source_value>478</source_value>
+        <target_value>Chiltern</target_value>
+      </field>
+      <field>
+        <source_value>479</source_value>
+        <target_value>Milton Keynes</target_value>
+      </field>
+      <field>
+        <source_value>480</source_value>
+        <target_value>Wycombe</target_value>
+      </field>
+      <field>
+        <source_value>481</source_value>
+        <target_value>Cherwell</target_value>
+      </field>
+      <field>
+        <source_value>482</source_value>
+        <target_value>Oxford</target_value>
+      </field>
+      <field>
+        <source_value>483</source_value>
+        <target_value>Vale of White Horse</target_value>
+      </field>
+      <field>
+        <source_value>484</source_value>
+        <target_value>South Oxfordshire</target_value>
+      </field>
+      <field>
+        <source_value>485</source_value>
+        <target_value>West Oxfordshire</target_value>
+      </field>
+      <field>
+        <source_value>490</source_value>
+        <target_value>Basingstoke and Deane</target_value>
+      </field>
+      <field>
+        <source_value>491</source_value>
+        <target_value>Eastleigh</target_value>
+      </field>
+      <field>
+        <source_value>492</source_value>
+        <target_value>Fareham</target_value>
+      </field>
+      <field>
+        <source_value>493</source_value>
+        <target_value>Gosport</target_value>
+      </field>
+      <field>
+        <source_value>494</source_value>
+        <target_value>Hart</target_value>
+      </field>
+      <field>
+        <source_value>495</source_value>
+        <target_value>Havant</target_value>
+      </field>
+      <field>
+        <source_value>496</source_value>
+        <target_value>New Forest</target_value>
+      </field>
+      <field>
+        <source_value>497</source_value>
+        <target_value>East Hampshire</target_value>
+      </field>
+      <field>
+        <source_value>498</source_value>
+        <target_value>Portsmouth</target_value>
+      </field>
+      <field>
+        <source_value>499</source_value>
+        <target_value>Rushmoor</target_value>
+      </field>
+      <field>
+        <source_value>500</source_value>
+        <target_value>Southampton </target_value>
+      </field>
+      <field>
+        <source_value>501</source_value>
+        <target_value>Test Valley</target_value>
+      </field>
+      <field>
+        <source_value>502</source_value>
+        <target_value>Winchester</target_value>
+      </field>
+      <field>
+        <source_value>505</source_value>
+        <target_value>Isle of Wight</target_value>
+      </field>
+      <field>
+        <source_value>510</source_value>
+        <target_value>Elmbridge</target_value>
+      </field>
+      <field>
+        <source_value>511</source_value>
+        <target_value>Guildford</target_value>
+      </field>
+      <field>
+        <source_value>512</source_value>
+        <target_value>Mole Valley</target_value>
+      </field>
+      <field>
+        <source_value>513</source_value>
+        <target_value>Reigate and Banstead</target_value>
+      </field>
+      <field>
+        <source_value>514</source_value>
+        <target_value>Runnymede</target_value>
+      </field>
+      <field>
+        <source_value>515</source_value>
+        <target_value>Surrey Heath</target_value>
+      </field>
+      <field>
+        <source_value>516</source_value>
+        <target_value>Tandridge</target_value>
+      </field>
+      <field>
+        <source_value>517</source_value>
+        <target_value>Waverley</target_value>
+      </field>
+      <field>
+        <source_value>518</source_value>
+        <target_value>Woking</target_value>
+      </field>
+      <field>
+        <source_value>530</source_value>
+        <target_value>Ashford</target_value>
+      </field>
+      <field>
+        <source_value>531</source_value>
+        <target_value>Canterbury</target_value>
+      </field>
+      <field>
+        <source_value>532</source_value>
+        <target_value>Dartford</target_value>
+      </field>
+      <field>
+        <source_value>533</source_value>
+        <target_value>Dover</target_value>
+      </field>
+      <field>
+        <source_value>535</source_value>
+        <target_value>Gravesham</target_value>
+      </field>
+      <field>
+        <source_value>536</source_value>
+        <target_value>Maidstone</target_value>
+      </field>
+      <field>
+        <source_value>538</source_value>
+        <target_value>Sevenoaks</target_value>
+      </field>
+      <field>
+        <source_value>539</source_value>
+        <target_value>Shepway</target_value>
+      </field>
+      <field>
+        <source_value>540</source_value>
+        <target_value>Swale</target_value>
+      </field>
+      <field>
+        <source_value>541</source_value>
+        <target_value>Thanet</target_value>
+      </field>
+      <field>
+        <source_value>542</source_value>
+        <target_value>Tonbridge and Malling</target_value>
+      </field>
+      <field>
+        <source_value>543</source_value>
+        <target_value>Tunbridge Wells</target_value>
+      </field>
+      <field>
+        <source_value>544</source_value>
+        <target_value>Medway</target_value>
+      </field>
+      <field>
+        <source_value>551</source_value>
+        <target_value>Eastbourne</target_value>
+      </field>
+      <field>
+        <source_value>552</source_value>
+        <target_value>Hastings</target_value>
+      </field>
+      <field>
+        <source_value>554</source_value>
+        <target_value>Lewes</target_value>
+      </field>
+      <field>
+        <source_value>555</source_value>
+        <target_value>Rother</target_value>
+      </field>
+      <field>
+        <source_value>556</source_value>
+        <target_value>Wealden</target_value>
+      </field>
+      <field>
+        <source_value>557</source_value>
+        <target_value>Adur</target_value>
+      </field>
+      <field>
+        <source_value>558</source_value>
+        <target_value>Arun</target_value>
+      </field>
+      <field>
+        <source_value>559</source_value>
+        <target_value>Chichester</target_value>
+      </field>
+      <field>
+        <source_value>560</source_value>
+        <target_value>Crawley</target_value>
+      </field>
+      <field>
+        <source_value>562</source_value>
+        <target_value>Horsham</target_value>
+      </field>
+      <field>
+        <source_value>563</source_value>
+        <target_value>Mid Sussex</target_value>
+      </field>
+      <field>
+        <source_value>564</source_value>
+        <target_value>Worthing</target_value>
+      </field>
+      <field>
+        <source_value>565</source_value>
+        <target_value>Brighton and Hove</target_value>
+      </field>
+      <field>
+        <source_value>570</source_value>
+        <target_value>City of London</target_value>
+      </field>
+      <field>
+        <source_value>580</source_value>
+        <target_value>East Devon</target_value>
+      </field>
+      <field>
+        <source_value>581</source_value>
+        <target_value>Exeter</target_value>
+      </field>
+      <field>
+        <source_value>582</source_value>
+        <target_value>North Devon</target_value>
+      </field>
+      <field>
+        <source_value>583</source_value>
+        <target_value>Plymouth</target_value>
+      </field>
+      <field>
+        <source_value>584</source_value>
+        <target_value>South Hams</target_value>
+      </field>
+      <field>
+        <source_value>585</source_value>
+        <target_value>Teignbridge</target_value>
+      </field>
+      <field>
+        <source_value>586</source_value>
+        <target_value>Mid Devon</target_value>
+      </field>
+      <field>
+        <source_value>587</source_value>
+        <target_value>Torbay</target_value>
+      </field>
+      <field>
+        <source_value>588</source_value>
+        <target_value>Torridge</target_value>
+      </field>
+      <field>
+        <source_value>589</source_value>
+        <target_value>West Devon</target_value>
+      </field>
+      <field>
+        <source_value>590</source_value>
+        <target_value>Caradon</target_value>
+      </field>
+      <field>
+        <source_value>591</source_value>
+        <target_value>Carrick</target_value>
+      </field>
+      <field>
+        <source_value>592</source_value>
+        <target_value>Kerrier</target_value>
+      </field>
+      <field>
+        <source_value>593</source_value>
+        <target_value>North Cornwall</target_value>
+      </field>
+      <field>
+        <source_value>594</source_value>
+        <target_value>Penwith</target_value>
+      </field>
+      <field>
+        <source_value>595</source_value>
+        <target_value>Restormel</target_value>
+      </field>
+      <field>
+        <source_value>596</source_value>
+        <target_value>Cornwall</target_value>
+      </field>
+      <field>
+        <source_value>601</source_value>
+        <target_value>Bristol, City of</target_value>
+      </field>
+      <field>
+        <source_value>605</source_value>
+        <target_value>North Somerset</target_value>
+      </field>
+      <field>
+        <source_value>606</source_value>
+        <target_value>Mendip</target_value>
+      </field>
+      <field>
+        <source_value>607</source_value>
+        <target_value>Sedgemoor</target_value>
+      </field>
+      <field>
+        <source_value>608</source_value>
+        <target_value>Taunton Deane</target_value>
+      </field>
+      <field>
+        <source_value>609</source_value>
+        <target_value>West Somerset</target_value>
+      </field>
+      <field>
+        <source_value>610</source_value>
+        <target_value>South Somerset</target_value>
+      </field>
+      <field>
+        <source_value>611</source_value>
+        <target_value>Bath and North East Somerset</target_value>
+      </field>
+      <field>
+        <source_value>612</source_value>
+        <target_value>South Gloucestershire</target_value>
+      </field>
+      <field>
+        <source_value>620</source_value>
+        <target_value>Cheltenham</target_value>
+      </field>
+      <field>
+        <source_value>621</source_value>
+        <target_value>Cotswold</target_value>
+      </field>
+      <field>
+        <source_value>622</source_value>
+        <target_value>Forest of Dean</target_value>
+      </field>
+      <field>
+        <source_value>623</source_value>
+        <target_value>Gloucester</target_value>
+      </field>
+      <field>
+        <source_value>624</source_value>
+        <target_value>Stroud</target_value>
+      </field>
+      <field>
+        <source_value>625</source_value>
+        <target_value>Tewkesbury</target_value>
+      </field>
+      <field>
+        <source_value>630</source_value>
+        <target_value>Kennet</target_value>
+      </field>
+      <field>
+        <source_value>631</source_value>
+        <target_value>North Wiltshire</target_value>
+      </field>
+      <field>
+        <source_value>632</source_value>
+        <target_value>Salisbury</target_value>
+      </field>
+      <field>
+        <source_value>633</source_value>
+        <target_value>Swindon</target_value>
+      </field>
+      <field>
+        <source_value>634</source_value>
+        <target_value>West Wiltshire</target_value>
+      </field>
+      <field>
+        <source_value>635</source_value>
+        <target_value>Wiltshire</target_value>
+      </field>
+      <field>
+        <source_value>640</source_value>
+        <target_value>Bournemouth</target_value>
+      </field>
+      <field>
+        <source_value>641</source_value>
+        <target_value>Christchurch</target_value>
+      </field>
+      <field>
+        <source_value>642</source_value>
+        <target_value>North Dorset</target_value>
+      </field>
+      <field>
+        <source_value>643</source_value>
+        <target_value>Poole</target_value>
+      </field>
+      <field>
+        <source_value>644</source_value>
+        <target_value>Purbeck</target_value>
+      </field>
+      <field>
+        <source_value>645</source_value>
+        <target_value>West Dorset</target_value>
+      </field>
+      <field>
+        <source_value>646</source_value>
+        <target_value>Weymouth and Portland</target_value>
+      </field>
+      <field>
+        <source_value>647</source_value>
+        <target_value>East Dorset</target_value>
+      </field>
+      <field>
+        <source_value>720</source_value>
+        <target_value>Isle of Anglesey</target_value>
+      </field>
+      <field>
+        <source_value>721</source_value>
+        <target_value>Conwy</target_value>
+      </field>
+      <field>
+        <source_value>722</source_value>
+        <target_value>Gwynedd</target_value>
+      </field>
+      <field>
+        <source_value>723</source_value>
+        <target_value>Denbighshire</target_value>
+      </field>
+      <field>
+        <source_value>724</source_value>
+        <target_value>Flintshire</target_value>
+      </field>
+      <field>
+        <source_value>725</source_value>
+        <target_value>Wrexham</target_value>
+      </field>
+      <field>
+        <source_value>730</source_value>
+        <target_value>Blaenau Gwent</target_value>
+      </field>
+      <field>
+        <source_value>731</source_value>
+        <target_value>Caerphilly</target_value>
+      </field>
+      <field>
+        <source_value>732</source_value>
+        <target_value>Monmouthshire</target_value>
+      </field>
+      <field>
+        <source_value>733</source_value>
+        <target_value>Newport</target_value>
+      </field>
+      <field>
+        <source_value>734</source_value>
+        <target_value>Torfaen</target_value>
+      </field>
+      <field>
+        <source_value>740</source_value>
+        <target_value>Bridgend</target_value>
+      </field>
+      <field>
+        <source_value>741</source_value>
+        <target_value>Cardiff</target_value>
+      </field>
+      <field>
+        <source_value>742</source_value>
+        <target_value>Merthyr Tydfil</target_value>
+      </field>
+      <field>
+        <source_value>743</source_value>
+        <target_value>Neath Port Talbot</target_value>
+      </field>
+      <field>
+        <source_value>744</source_value>
+        <target_value>Rhondda, Cynon, Taff</target_value>
+      </field>
+      <field>
+        <source_value>745</source_value>
+        <target_value>Swansea</target_value>
+      </field>
+      <field>
+        <source_value>746</source_value>
+        <target_value>The Vale of Glamorgan</target_value>
+      </field>
+      <field>
+        <source_value>750</source_value>
+        <target_value>Ceredigion</target_value>
+      </field>
+      <field>
+        <source_value>751</source_value>
+        <target_value>Carmarthenshire</target_value>
+      </field>
+      <field>
+        <source_value>752</source_value>
+        <target_value>Pembrokeshire</target_value>
+      </field>
+      <field>
+        <source_value>753</source_value>
+        <target_value>Powys</target_value>
+      </field>
+      <field>
+        <source_value>910</source_value>
+        <target_value>Aberdeen City</target_value>
+      </field>
+      <field>
+        <source_value>911</source_value>
+        <target_value>Aberdeenshire</target_value>
+      </field>
+      <field>
+        <source_value>912</source_value>
+        <target_value>Angus</target_value>
+      </field>
+      <field>
+        <source_value>913</source_value>
+        <target_value>Argyll and Bute</target_value>
+      </field>
+      <field>
+        <source_value>914</source_value>
+        <target_value>Scottish Borders</target_value>
+      </field>
+      <field>
+        <source_value>915</source_value>
+        <target_value>Clackmannanshire</target_value>
+      </field>
+      <field>
+        <source_value>916</source_value>
+        <target_value>West Dunbartonshire</target_value>
+      </field>
+      <field>
+        <source_value>917</source_value>
+        <target_value>Dumfries and Galloway</target_value>
+      </field>
+      <field>
+        <source_value>918</source_value>
+        <target_value>Dundee City</target_value>
+      </field>
+      <field>
+        <source_value>919</source_value>
+        <target_value>East Ayrshire</target_value>
+      </field>
+      <field>
+        <source_value>920</source_value>
+        <target_value>East Dunbartonshire</target_value>
+      </field>
+      <field>
+        <source_value>921</source_value>
+        <target_value>East Lothian</target_value>
+      </field>
+      <field>
+        <source_value>922</source_value>
+        <target_value>East Renfrewshire</target_value>
+      </field>
+      <field>
+        <source_value>923</source_value>
+        <target_value>Edinburgh, City of</target_value>
+      </field>
+      <field>
+        <source_value>924</source_value>
+        <target_value>Falkirk</target_value>
+      </field>
+      <field>
+        <source_value>925</source_value>
+        <target_value>Fife</target_value>
+      </field>
+      <field>
+        <source_value>926</source_value>
+        <target_value>Glasgow City</target_value>
+      </field>
+      <field>
+        <source_value>927</source_value>
+        <target_value>Highland</target_value>
+      </field>
+      <field>
+        <source_value>928</source_value>
+        <target_value>Inverclyde</target_value>
+      </field>
+      <field>
+        <source_value>929</source_value>
+        <target_value>Midlothian</target_value>
+      </field>
+      <field>
+        <source_value>930</source_value>
+        <target_value>Moray</target_value>
+      </field>
+      <field>
+        <source_value>931</source_value>
+        <target_value>North Ayrshire</target_value>
+      </field>
+      <field>
+        <source_value>932</source_value>
+        <target_value>North Lanarkshire</target_value>
+      </field>
+      <field>
+        <source_value>933</source_value>
+        <target_value>Orkney Islands</target_value>
+      </field>
+      <field>
+        <source_value>934</source_value>
+        <target_value>Perth and Kinross</target_value>
+      </field>
+      <field>
+        <source_value>935</source_value>
+        <target_value>Renfrewshire</target_value>
+      </field>
+      <field>
+        <source_value>936</source_value>
+        <target_value>Shetland Islands</target_value>
+      </field>
+      <field>
+        <source_value>937</source_value>
+        <target_value>South Ayrshire</target_value>
+      </field>
+      <field>
+        <source_value>938</source_value>
+        <target_value>South Lanarkshire</target_value>
+      </field>
+      <field>
+        <source_value>939</source_value>
+        <target_value>Stirling</target_value>
+      </field>
+      <field>
+        <source_value>940</source_value>
+        <target_value>West Lothian</target_value>
+      </field>
+      <field>
+        <source_value>941</source_value>
+        <target_value>Western Isles</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>848</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos articulado</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Towing_and_Articulation</field_to_use>
+    <target_field>articulado</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>0</source_value>
+        <target_value>No tow&#x2f;articulation</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Articulated vehicle</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Double or multiple trailer</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Caravan</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Single trailer</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Other tow</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos clima</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Weather_Conditions</field_to_use>
+    <target_field>Clima</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Fine no high winds</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Raining no high winds</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Snowing no high winds</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Fine &#x2b; high winds</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Raining &#x2b; high winds</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Snowing &#x2b; high winds</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Fog or mist</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Other</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Unknown</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>528</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos combustible</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Propulsion_Code</field_to_use>
+    <target_field>combustible</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Petrol</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Heavy oil</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Electric</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Steam</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Gas</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Petrol&#x2f;Gas &#x28;LPG&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Gas&#x2f;Bi-fuel</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Hybrid electric</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Gas Diesel</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>New fuel technology</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Fuel cells</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Electric diesel</target_value>
+      </field>
+      <field>
+        <source_value>M</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Undefined</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1200</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos impacto</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>1st_Point_of_Impact</field_to_use>
+    <target_field>impacto</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>0</source_value>
+        <target_value>Did not impact</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Front</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Back</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Offside</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Nearside</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>848</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos maniobra</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Vehicle_Manoeuvre</field_to_use>
+    <target_field>maniobra</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Reversing</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Parked</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Waiting to go - held up</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Slowing or stopping</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Moving off</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>U-turn</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Turning left</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Waiting to turn left</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Turning right</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>Waiting to turn right</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Changing lane to left</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>Changing lane to right</target_value>
+      </field>
+      <field>
+        <source_value>13</source_value>
+        <target_value>Overtaking moving vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>14</source_value>
+        <target_value>Overtaking static vehicle - offside</target_value>
+      </field>
+      <field>
+        <source_value>15</source_value>
+        <target_value>Overtaking - nearside</target_value>
+      </field>
+      <field>
+        <source_value>16</source_value>
+        <target_value>Going ahead left-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>17</source_value>
+        <target_value>Going ahead right-hand bend</target_value>
+      </field>
+      <field>
+        <source_value>18</source_value>
+        <target_value>Going ahead other</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>672</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos rango edad</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Age_Band_of_Driver</field_to_use>
+    <target_field>rango_edad</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>0 - 5</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>6 - 10</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>11 - 15</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>16 - 20</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>21 - 25</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>26 - 35</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>36 - 45</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>46 - 55</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>56 - 65</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>66 - 75</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Over 75</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>320</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos sexo conductor</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Sex_of_Driver</field_to_use>
+    <target_field>sexo_conductor</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Male</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Female</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Not known</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>496</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos tipo vehiculo</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Vehicle_Type</field_to_use>
+    <target_field>tipo_vehiculo</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Pedal cycle</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Motorcycle 50cc and under</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Motorcycle 125cc and under</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Motorcycle over 125cc and up to 500cc</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Motorcycle over 500cc</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>Taxi&#x2f;Private hire car</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Car</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>Minibus &#x28;8 - 16 passenger seats&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Bus or coach &#x28;17 or more pass seats&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>16</source_value>
+        <target_value>Ridden horse</target_value>
+      </field>
+      <field>
+        <source_value>17</source_value>
+        <target_value>Agricultural vehicle</target_value>
+      </field>
+      <field>
+        <source_value>18</source_value>
+        <target_value>Tram</target_value>
+      </field>
+      <field>
+        <source_value>19</source_value>
+        <target_value>Van &#x2f; Goods 3.5 tonnes mgw or under</target_value>
+      </field>
+      <field>
+        <source_value>20</source_value>
+        <target_value>Goods over 3.5t. and under 7.5t</target_value>
+      </field>
+      <field>
+        <source_value>21</source_value>
+        <target_value>Goods 7.5 tonnes mgw and over</target_value>
+      </field>
+      <field>
+        <source_value>22</source_value>
+        <target_value>Mobility scooter</target_value>
+      </field>
+      <field>
+        <source_value>23</source_value>
+        <target_value>Electric motorcycle</target_value>
+      </field>
+      <field>
+        <source_value>90</source_value>
+        <target_value>Other vehicle</target_value>
+      </field>
+      <field>
+        <source_value>97</source_value>
+        <target_value>Motorcycle - unknown cc</target_value>
+      </field>
+      <field>
+        <source_value>98</source_value>
+        <target_value>Goods vehicle - unknown weight</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>96</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Codigos volante izquierda</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Was_Vehicle_Left_Hand_Drive&#x3f;</field_to_use>
+    <target_field>volante_izq</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>0</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1008</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Edad veh&#xed;culo</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var edad &#x3d; Age_of_Vehicle&#x3b;&#xd;&#xa;var edad_vehiculo&#x3d;&#x22;&#x22;&#x3b;&#xd;&#xa;&#xd;&#xa;if &#x28;edad &#x3d;&#x3d; -1&#x29;&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;0&#x3b;&#xd;&#xa;&#x7d;else&#x7b;&#xd;&#xa;	edad_vehiculo&#x3d;edad&#x3b;&#xd;&#xa;&#x7d;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>edad_vehiculo</name>
+        <rename>edad_vehiculo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>480</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapeo de peligros_calzada</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Carriageway_Hazards</field_to_use>
+    <target_field>peligros_calzada</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>0</source_value>
+        <target_value>None</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Vehicle load on road</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Other object on road</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Previous accident</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Dog on road</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Other animal on road</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Pedestrian in carriageway - not injured</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Any animal in carriageway &#x28;except ridden horse&#x29;</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1344</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapeo de urbano</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Urban_or_Rural_Area</field_to_use>
+    <target_field>urbano</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Urban</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Rural</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Unallocated</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1200</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapeo estado_via</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Road_Surface_Conditions</field_to_use>
+    <target_field>estado_via</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Dry</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>Wet or damp</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Snow</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>Frost or ice</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>Flood over 3cm. deep</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Oil or diesel</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Mud</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1344</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapeo n_carriles</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Road_Type</field_to_use>
+    <target_field>n_carriles</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>0</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>2</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>0</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>1</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1152</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapeo road_type</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Road_Type</field_to_use>
+    <target_field>tipo_via</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>2</source_value>
+        <target_value>One way street</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>Dual carriageway</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>Single carriageway</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>Slip road</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>Unknown</target_value>
+      </field>
+      <field>
+        <source_value>12</source_value>
+        <target_value>One way street&#x2f;Slip road</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+      <field>
+        <source_value>1</source_value>
+        <target_value>Roundabout</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>976</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion de id de clima</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_clima</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>Clima</name>
+        <field>condicion_meteorologica</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_clima</name>
+        <rename>id_clima</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>720</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion id conductor</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_conductor</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>sexo_conductor</name>
+        <field>sexo</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Age_of_Driver</name>
+        <field>edad</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>rango_edad</name>
+        <field>rango_edad</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_conductor</name>
+        <rename>id_conductor</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>96</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion id localizacion</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_localizacion</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>localidad</name>
+        <field>localidad</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_localizacion</name>
+        <rename>id_localizacion</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>672</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion id tiempo</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_tiempo</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>minuto</name>
+        <field>minuto</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>hora</name>
+        <field>hora</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Day_of_Week</name>
+        <field>dia_semana</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>dia</name>
+        <field>dia</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>mes</name>
+        <field>mes</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>anho</name>
+        <field>anho</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_tiempo</name>
+        <rename>id_tiempo</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1216</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion id vehiculo</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_vehiculo</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>tipo_vehiculo</name>
+        <field>tipo_vehiculo</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>articulado</name>
+        <field>articulado</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Age_of_Vehicle</name>
+        <field>a&#xf1;o</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>maniobra</name>
+        <field>maniobra</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>impacto</name>
+        <field>impacto</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>volante_izq</name>
+        <field>volante_izq</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>combustible</name>
+        <field>combustible</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_vehiculo</name>
+        <rename>id_vehiculo</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1392</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Obtencion id via</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>Conexion_datamart_trafico</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_via</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>tipo_via</name>
+        <field>tipo_via</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>n_carriles</name>
+        <field>n_carriles</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>Speed_limit</name>
+        <field>velocidad_autorizada</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>estado_via</name>
+        <field>estado_via</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>peligros_calzada</name>
+        <field>peligros_calzada</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>urbano</name>
+        <field>urbano</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id_via</name>
+        <rename>id_via</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1008</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Transformar estilo fecha</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>Accident_Index</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Location_Easting_OSGR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Location_Northing_OSGR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Longitude</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Latitude</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Police_Force</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Accident_Severity</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Number_of_Vehicles</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Number_of_Casualties</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Date</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Day_of_Week</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Time</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Local_Authority_&#x28;District&#x29;</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Local_Authority_&#x28;Highway&#x29;</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>1st_Road_Class</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>1st_Road_Number</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Road_Type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Speed_limit</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Junction_Detail</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Junction_Control</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>2nd_Road_Class</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>2nd_Road_Number</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Pedestrian_Crossing-Human_Control</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Pedestrian_Crossing-Physical_Facilities</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Light_Conditions</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Weather_Conditions</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Road_Surface_Conditions</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Special_Conditions_at_Site</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Carriageway_Hazards</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Urban_or_Rural_Area</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Did_Police_Officer_Attend_Scene_of_Accident</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LSOA_of_Accident_Location</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Accident_Index_1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_Reference</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_Type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Towing_and_Articulation</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_Manoeuvre</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_Location-Restricted_Lane</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Junction_Location</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Skidding_and_Overturning</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Hit_Object_in_Carriageway</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_Leaving_Carriageway</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Hit_Object_off_Carriageway</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>1st_Point_of_Impact</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Was_Vehicle_Left_Hand_Drive&#x3f;</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Journey_Purpose_of_Driver</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Sex_of_Driver</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Age_of_Driver</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Age_Band_of_Driver</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Engine_Capacity_&#x28;CC&#x29;</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Propulsion_Code</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Age_of_Vehicle</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Driver_IMD_Decile</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Driver_Home_Area_Type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Vehicle_IMD_Decile</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Clima</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>id_clima</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>tipo_via</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>n_carriles</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>estado_via</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>peligros_calzada</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>urbano</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>id_via</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>localidad</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>id_localizacion</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>sexo_conductor</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rango_edad</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>id_conductor</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>tipo_vehiculo</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>articulado</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>edad_vehiculo</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>maniobra</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>impacto</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>volante_izq</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>combustible</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>id_vehiculo</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>Date</name>
+        <rename>fec</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>dd&#x2f;MM&#x2f;yyyy</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1392</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>descomponer fecha</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var fecha &#x3d; fec.split&#x28;&#x22;&#x2f;&#x22;&#x29;&#x3b;&#xd;&#xa;var dia &#x3d; fecha&#x5b;0&#x5d;&#x3b;&#xd;&#xa;var mes &#x3d; fecha&#x5b;1&#x5d;&#x3b;&#xd;&#xa;var anho &#x3d; fecha&#x5b;2&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;if &#x28;Time&#x3d;&#x3d;null&#x29;&#x7b;&#xd;&#xa;	Time&#x3d;&#x22;00&#x3a;00&#x22;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;var horas &#x3d; Time.toString&#x28;&#x29;.split&#x28;&#x22;&#x3a;&#x22;&#x29;&#x3b;&#xd;&#xa;var hora &#x3d; horas&#x5b;0&#x5d;&#x3b;&#xd;&#xa;var minuto &#x3d; horas&#x5b;1&#x5d;&#x3b;&#xd;&#xa;&#xd;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>dia</name>
+        <rename>dia</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>mes</name>
+        <rename>mes</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>anho</name>
+        <rename>anho</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>hora</name>
+        <rename>hora</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>minuto</name>
+        <rename>minuto</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1392</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Accidents</name>
     <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -88,7 +3476,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Reducido&#x5c;Accidents_2015.min.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Accidents_2015.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -457,15 +3845,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>200</xloc>
-      <yloc>100</yloc>
+      <xloc>96</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>B&#xfffd;squeda en Base de Datos</name>
-    <type>DBLookup</type>
+    <name>Vehicles</name>
+    <type>CsvInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -474,21 +3862,429 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection/>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>tabla de b&#xfffd;squeda</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-    </lookup>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Vehicles_2015.csv</filename>
+    <filename_field>Accident_Index</filename_field>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>&#x22;</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding/>
+    <fields>
+      <field>
+        <name>Accident_Index</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_Reference</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_Type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Towing_and_Articulation</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_Manoeuvre</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_Location-Restricted_Lane</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Junction_Location</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Skidding_and_Overturning</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Hit_Object_in_Carriageway</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_Leaving_Carriageway</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Hit_Object_off_Carriageway</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>1st_Point_of_Impact</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Was_Vehicle_Left_Hand_Drive&#x3f;</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Journey_Purpose_of_Driver</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Sex_of_Driver</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Age_of_Driver</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Age_Band_of_Driver</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Engine_Capacity_&#x28;CC&#x29;</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Propulsion_Code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Age_of_Vehicle</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Driver_IMD_Decile</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Driver_Home_Area_Type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Vehicle_IMD_Decile</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
-      <yloc>100</yloc>
+      <xloc>96</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Accident_Index</name>
+    <type>MultiwayMergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <join_type>INNER</join_type>
+    <step0>Accidents</step0>
+    <step1>Vehicles</step1>
+    <number_input>2</number_input>
+    <keys>
+      <key>Accident_Index</key>
+      <key>Accident_Index</key>
+    </keys>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>304</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Salida Fichero de Texto</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>&#x3b;</separator>
+    <enclosure>&#x22;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>D&#x3a;&#x5c;Diego&#x5c;Escritorio&#x5c;res_cod</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>id_tiempo</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id_clima</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id_localizacion</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id_via</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id_vehiculo</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>id_conductor</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1008</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
