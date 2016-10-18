@@ -123,11 +123,11 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Codigos rango edad</from><to>Valor Java Script Modificado</to><enabled>Y</enabled> </hop>
   <hop> <from>Carga datos</from><to>Codigos sexo conductor</to><enabled>Y</enabled> </hop>
   <hop> <from>Codigos sexo conductor</from><to>Codigos rango edad</to><enabled>Y</enabled> </hop>
-  <hop> <from>Valor Java Script Modificado</from><to>Agrupar conductores</to><enabled>Y</enabled> </hop>
-  <hop> <from>Agrupar conductores</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
+  <hop> <from>Codigos rango edad</from><to>Agrupar conductores</to><enabled>Y</enabled> </hop>
+  <hop> <from>Agrupar conductores</from><to>Valor Java Script Modificado</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valor Java Script Modificado</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Agrupar conductores</name>
@@ -151,15 +151,12 @@
         <field>
           <name>rango_edad</name>
         </field>
-        <field>
-          <name>ebrio</name>
-        </field>
       </group>
       <fields>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1008</xloc>
+      <xloc>768</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
@@ -633,7 +630,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;var ebrio &#x3d; 0&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;var ebrio &#x3d; Math.random&#x28;&#x29;&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>ebrio</name>
         <rename>ebrio</rename>
         <type>Number</type>
@@ -642,7 +639,7 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>800</xloc>
+      <xloc>960</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
