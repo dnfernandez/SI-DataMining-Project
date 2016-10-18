@@ -57,7 +57,7 @@ create database datamart_trafico default character set utf8 default collate utf8
 		tipo_damnificado varchar(60),
 		sexo varchar(60),
 		edad int(3),
-		rango_edad int(2),
+		rango_edad varchar(60),
 		gravedad varchar(60),
 		pasajero varchar(60)
 	);
