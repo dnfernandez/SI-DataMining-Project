@@ -4842,13 +4842,13 @@
         <replace>N</replace>
       </field>      <field>        <name>vehiculos_implicados</name>
         <rename>vehiculos_implicados</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>      <field>        <name>num_damnificados</name>
         <rename>num_damnificados</rename>
-        <type>None</type>
+        <type>Number</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
@@ -4903,7 +4903,7 @@
     <connection>Conexion_datamart_trafico</connection>
     <schema/>
     <table>fact_accidente</table>
-    <commit>50000</commit>
+    <commit>0</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
