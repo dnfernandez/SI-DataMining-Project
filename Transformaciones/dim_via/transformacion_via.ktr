@@ -132,6 +132,48 @@
   <hop> <from>Agrupar vias</from><to>Salida Tabla</to><enabled>Y</enabled> </hop>
   </order>
   <step>
+    <name>Agrupar vias</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>estado_via</name>
+        </field>
+        <field>
+          <name>n_carriles</name>
+        </field>
+        <field>
+          <name>peligros_calzada</name>
+        </field>
+        <field>
+          <name>tipo_via</name>
+        </field>
+        <field>
+          <name>urbano</name>
+        </field>
+        <field>
+          <name>Speed_limit</name>
+        </field>
+      </group>
+      <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>304</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>CSV file input</name>
     <type>CsvInput</type>
     <description/>
@@ -142,7 +184,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Accidents_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;DfTRoadSafety_Accidents_2014.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -838,48 +880,6 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>144</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Agrupar vias</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>estado_via</name>
-        </field>
-        <field>
-          <name>n_carriles</name>
-        </field>
-        <field>
-          <name>peligros_calzada</name>
-        </field>
-        <field>
-          <name>tipo_via</name>
-        </field>
-        <field>
-          <name>urbano</name>
-        </field>
-        <field>
-          <name>Speed_limit</name>
-        </field>
-      </group>
-      <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>304</xloc>
       <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>

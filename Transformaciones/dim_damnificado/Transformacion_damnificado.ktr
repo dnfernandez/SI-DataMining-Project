@@ -184,7 +184,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Casualties_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;DfTRoadSafety_Casualties_2014.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -460,6 +460,78 @@
     </step>
 
   <step>
+    <name>Codigos rango edad</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Age_Band_of_Casualty</field_to_use>
+    <target_field>rango_edad</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>0 - 5</target_value>
+      </field>
+      <field>
+        <source_value>2</source_value>
+        <target_value>6 - 10</target_value>
+      </field>
+      <field>
+        <source_value>3</source_value>
+        <target_value>11 - 15</target_value>
+      </field>
+      <field>
+        <source_value>4</source_value>
+        <target_value>16 - 20</target_value>
+      </field>
+      <field>
+        <source_value>5</source_value>
+        <target_value>21 - 25</target_value>
+      </field>
+      <field>
+        <source_value>6</source_value>
+        <target_value>26 - 35</target_value>
+      </field>
+      <field>
+        <source_value>7</source_value>
+        <target_value>36 - 45</target_value>
+      </field>
+      <field>
+        <source_value>8</source_value>
+        <target_value>46 - 55</target_value>
+      </field>
+      <field>
+        <source_value>9</source_value>
+        <target_value>56 - 65</target_value>
+      </field>
+      <field>
+        <source_value>10</source_value>
+        <target_value>66 - 75</target_value>
+      </field>
+      <field>
+        <source_value>11</source_value>
+        <target_value>Over 75</target_value>
+      </field>
+      <field>
+        <source_value>-1</source_value>
+        <target_value>Data missing or out of range</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>976</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Codigos sexo damnificados</name>
     <type>ValueMapper</type>
     <description/>
@@ -661,78 +733,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1120</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Codigos rango edad</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <field_to_use>Age_Band_of_Casualty</field_to_use>
-    <target_field>rango_edad</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>1</source_value>
-        <target_value>0 - 5</target_value>
-      </field>
-      <field>
-        <source_value>2</source_value>
-        <target_value>6 - 10</target_value>
-      </field>
-      <field>
-        <source_value>3</source_value>
-        <target_value>11 - 15</target_value>
-      </field>
-      <field>
-        <source_value>4</source_value>
-        <target_value>16 - 20</target_value>
-      </field>
-      <field>
-        <source_value>5</source_value>
-        <target_value>21 - 25</target_value>
-      </field>
-      <field>
-        <source_value>6</source_value>
-        <target_value>26 - 35</target_value>
-      </field>
-      <field>
-        <source_value>7</source_value>
-        <target_value>36 - 45</target_value>
-      </field>
-      <field>
-        <source_value>8</source_value>
-        <target_value>46 - 55</target_value>
-      </field>
-      <field>
-        <source_value>9</source_value>
-        <target_value>56 - 65</target_value>
-      </field>
-      <field>
-        <source_value>10</source_value>
-        <target_value>66 - 75</target_value>
-      </field>
-      <field>
-        <source_value>11</source_value>
-        <target_value>Over 75</target_value>
-      </field>
-      <field>
-        <source_value>-1</source_value>
-        <target_value>Data missing or out of range</target_value>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

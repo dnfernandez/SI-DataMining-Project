@@ -173,7 +173,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Vehicles_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;DfTRoadSafety_Vehicles_2014.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -630,7 +630,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;var ebrio &#x3d; Math.random&#x28;&#x29;&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;var ebrio &#x3d; Math.random&#x28;&#x29; - 0.2&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>ebrio</name>
         <rename>ebrio</rename>
         <type>Number</type>

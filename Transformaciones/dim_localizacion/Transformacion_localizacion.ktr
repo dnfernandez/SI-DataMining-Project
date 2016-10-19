@@ -165,7 +165,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;Accidents_2015.csv</filename>
+    <filename>C&#x3a;&#x5c;SI-DataMining-Project&#x5c;Datasets&#x5c;Originales&#x5c;DfTRoadSafety_Accidents_2014.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
