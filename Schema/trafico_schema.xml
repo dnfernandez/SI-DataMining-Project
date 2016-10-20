@@ -1,0 +1,116 @@
+<Schema name="Trafico">
+  <Cube name="Trafico" visible="true" cache="true" enabled="true">
+    <Table name="fact_accidente">
+    </Table>
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_tiempo" name="Tiempo">
+      <Hierarchy name="tiempo" visible="true" hasAll="true" primaryKey="id_tiempo">
+        <Table name="dim_tiempo" alias="">
+        </Table>
+        <Level name="minuto" visible="true" table="dim_tiempo" column="minuto" uniqueMembers="false" levelType="TimeMinutes">
+        </Level>
+        <Level name="hora" visible="true" table="dim_tiempo" column="hora" uniqueMembers="false" levelType="TimeHours">
+        </Level>
+        <Level name="dia" visible="true" table="dim_tiempo" column="dia" uniqueMembers="false" levelType="TimeDays">
+        </Level>
+        <Level name="mes" visible="true" table="dim_tiempo" column="mes" uniqueMembers="false" levelType="TimeMonths">
+        </Level>
+        <Level name="anho" visible="true" table="dim_tiempo" column="anho" uniqueMembers="true" levelType="TimeYears">
+        </Level>
+        <Level name="dia_semana" visible="true" table="dim_tiempo" column="dia_semana" uniqueMembers="false" levelType="TimeUndefined">
+        </Level>
+        <Level name="festivo" visible="true" table="dim_tiempo" column="festivo" uniqueMembers="false" levelType="TimeUndefined">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_clima" name="Clima">
+      <Hierarchy name="clima" visible="true" hasAll="true" primaryKey="id_clima">
+        <Table name="dim_clima" alias="">
+        </Table>
+        <Level name="condicion_meteorologica" visible="true" table="dim_clima" column="condicion_meteorologica" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_vehiculo" name="Vehiculo">
+      <Hierarchy name="vehiculo" visible="true" hasAll="true" primaryKey="id_vehiculo">
+        <Table name="dim_vehiculo">
+        </Table>
+        <Level name="tipo_vehiculo" visible="true" table="dim_vehiculo" column="tipo_vehiculo" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="articulado" visible="true" table="dim_vehiculo" column="articulado" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="anho" visible="true" table="dim_vehiculo" column="a&#241;o" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="maniobra" visible="true" table="dim_vehiculo" column="maniobra" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="impacto" visible="true" table="dim_vehiculo" column="impacto" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="volante_izq" visible="true" table="dim_vehiculo" column="volante_izq" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="combustible" visible="true" table="dim_vehiculo" column="combustible" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_via" name="Via">
+      <Hierarchy name="via" visible="true" hasAll="true" primaryKey="id_via">
+        <Table name="dim_via" alias="">
+        </Table>
+        <Level name="tipo_via" visible="true" table="dim_via" column="tipo_via" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="n_carriles" visible="true" table="dim_via" column="n_carriles" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="velocidad_autorizada" visible="true" table="dim_via" column="velocidad_autorizada" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="estado_via" visible="true" table="dim_via" column="estado_via" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="peligros_calzada" visible="true" table="dim_via" column="peligros_calzada" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="urbano" visible="true" table="dim_via" column="urbano" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_conductor" name="Conductor">
+      <Hierarchy name="conductor" visible="true" hasAll="true" primaryKey="id_conductor">
+        <Table name="dim_conductor" alias="">
+        </Table>
+        <Level name="sexo" visible="true" table="dim_conductor" column="sexo" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="edad" visible="true" table="dim_conductor" column="edad" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="ebrio" visible="true" table="dim_conductor" column="ebrio" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="rango_edad" visible="true" table="dim_conductor" column="rango_edad" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_localizacion" name="Localizacion">
+      <Hierarchy name="localizacion" visible="true" hasAll="true" primaryKey="id_localizacion">
+        <Table name="dim_localizacion" alias="">
+        </Table>
+        <Level name="localidad" visible="true" table="dim_localizacion" column="localidad" uniqueMembers="false" levelType="Regular">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_damnificado" name="Damnificado">
+      <Hierarchy name="damnificado" visible="true" hasAll="true" primaryKey="id_damnificado">
+        <Table name="dim_damnificado">
+        </Table>
+        <Level name="tipo_damnificado" visible="true" table="dim_damnificado" column="tipo_damnificado" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="sexo" visible="true" table="dim_damnificado" column="sexo" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="edad" visible="true" table="dim_damnificado" column="edad" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="rango_edad" visible="true" table="dim_damnificado" column="rango_edad" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="gravedad" visible="true" table="dim_damnificado" column="gravedad" uniqueMembers="false" levelType="Regular">
+        </Level>
+        <Level name="pasajero" visible="true" table="dim_damnificado" column="pasajero" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="vehiculos_implicados" column="vehiculos_implicados" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="n_damnificados" column="n_damnificados" aggregator="distinct-count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
