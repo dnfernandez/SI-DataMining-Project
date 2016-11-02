@@ -1,0 +1,15 @@
+SELECT Measures.vehiculos_implicados ON COLUMNS,
+	Clima.[condicion_meteorologica].members ON ROWS
+FROM Trafico
+
+SELECT Measures.vehiculos_implicados ON COLUMNS
+FROM Trafico
+WHERE ([Conductor].[Sexo].&[Male])
+
+
+Obtenemos el número de coches implicados en accidentes separandolos por el sexo del conductor y el tipo de via cuando llueve pero no hace viento
+
+SELECT {[Conductor].[sexo].MEMBERS}*{[Vehiculo].[tipo_vehiculo].[Car]} ON COLUMNS, 
+{[Via].[tipo_via].members}*{[Clima].[condicion_meteorologica].[Raining no high winds]} ON ROWS 
+FROM [Trafico] 
+WHERE (MEASURES.[vehiculos_implicados])

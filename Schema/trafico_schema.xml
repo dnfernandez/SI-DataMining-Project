@@ -2,115 +2,115 @@
   <Cube name="Trafico" visible="true" cache="true" enabled="true">
     <Table name="fact_accidente">
     </Table>
-    <Dimension type="TimeDimension" visible="true" foreignKey="id_tiempo" name="Tiempo">
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_tiempo" highCardinality="false" name="Tiempo">
       <Hierarchy name="tiempo" visible="true" hasAll="true" primaryKey="id_tiempo">
-        <Table name="dim_tiempo" alias="">
+        <Table name="dim_tiempo">
         </Table>
-        <Level name="minuto" visible="true" table="dim_tiempo" column="minuto" uniqueMembers="false" levelType="TimeMinutes">
+        <Level name="minuto" visible="true" table="dim_tiempo" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
         </Level>
-        <Level name="hora" visible="true" table="dim_tiempo" column="hora" uniqueMembers="false" levelType="TimeHours">
+        <Level name="hora" visible="true" table="dim_tiempo" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
         </Level>
-        <Level name="dia" visible="true" table="dim_tiempo" column="dia" uniqueMembers="false" levelType="TimeDays">
+        <Level name="dia" visible="true" table="dim_tiempo" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
         </Level>
-        <Level name="mes" visible="true" table="dim_tiempo" column="mes" uniqueMembers="false" levelType="TimeMonths">
+        <Level name="mes" visible="true" table="dim_tiempo" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
         </Level>
-        <Level name="anho" visible="true" table="dim_tiempo" column="anho" uniqueMembers="true" levelType="TimeYears">
+        <Level name="anho" visible="true" table="dim_tiempo" column="anho" type="String" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
         </Level>
-        <Level name="dia_semana" visible="true" table="dim_tiempo" column="dia_semana" uniqueMembers="false" levelType="TimeUndefined">
+        <Level name="dia_semana" visible="true" table="dim_tiempo" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
-        <Level name="festivo" visible="true" table="dim_tiempo" column="festivo" uniqueMembers="false" levelType="TimeUndefined">
+        <Level name="festivo" visible="true" table="dim_tiempo" column="festivo" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_clima" name="Clima">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_clima" highCardinality="false" name="Clima">
       <Hierarchy name="clima" visible="true" hasAll="true" primaryKey="id_clima">
-        <Table name="dim_clima" alias="">
+        <Table name="dim_clima">
         </Table>
-        <Level name="condicion_meteorologica" visible="true" table="dim_clima" column="condicion_meteorologica" uniqueMembers="false" levelType="Regular">
+        <Level name="condicion_meteorologica" visible="true" table="dim_clima" column="condicion_meteorologica" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_vehiculo" name="Vehiculo">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_vehiculo" highCardinality="false" name="Vehiculo">
       <Hierarchy name="vehiculo" visible="true" hasAll="true" primaryKey="id_vehiculo">
         <Table name="dim_vehiculo">
         </Table>
-        <Level name="tipo_vehiculo" visible="true" table="dim_vehiculo" column="tipo_vehiculo" uniqueMembers="false" levelType="Regular">
+        <Level name="tipo_vehiculo" visible="true" table="dim_vehiculo" column="tipo_vehiculo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="articulado" visible="true" table="dim_vehiculo" column="articulado" uniqueMembers="false" levelType="Regular">
+        <Level name="articulado" visible="true" table="dim_vehiculo" column="articulado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="anho" visible="true" table="dim_vehiculo" column="a&#241;o" uniqueMembers="false" levelType="Regular">
+        <Level name="anho" visible="true" table="dim_vehiculo" column="a&#241;o" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="maniobra" visible="true" table="dim_vehiculo" column="maniobra" uniqueMembers="false" levelType="Regular">
+        <Level name="maniobra" visible="true" table="dim_vehiculo" column="maniobra" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="impacto" visible="true" table="dim_vehiculo" column="impacto" uniqueMembers="false" levelType="Regular">
+        <Level name="impacto" visible="true" table="dim_vehiculo" column="impacto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="volante_izq" visible="true" table="dim_vehiculo" column="volante_izq" uniqueMembers="false" levelType="Regular">
+        <Level name="volante_izq" visible="true" table="dim_vehiculo" column="volante_izq" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="combustible" visible="true" table="dim_vehiculo" column="combustible" uniqueMembers="false" levelType="Regular">
+        <Level name="combustible" visible="true" table="dim_vehiculo" column="combustible" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_via" name="Via">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_via" highCardinality="false" name="Via">
       <Hierarchy name="via" visible="true" hasAll="true" primaryKey="id_via">
-        <Table name="dim_via" alias="">
+        <Table name="dim_via">
         </Table>
-        <Level name="tipo_via" visible="true" table="dim_via" column="tipo_via" uniqueMembers="false" levelType="Regular">
+        <Level name="tipo_via" visible="true" table="dim_via" column="tipo_via" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="n_carriles" visible="true" table="dim_via" column="n_carriles" uniqueMembers="false" levelType="Regular">
+        <Level name="n_carriles" visible="true" table="dim_via" column="n_carriles" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="velocidad_autorizada" visible="true" table="dim_via" column="velocidad_autorizada" uniqueMembers="false" levelType="Regular">
+        <Level name="velocidad_autorizada" visible="true" table="dim_via" column="velocidad_autorizada" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="estado_via" visible="true" table="dim_via" column="estado_via" uniqueMembers="false" levelType="Regular">
+        <Level name="estado_via" visible="true" table="dim_via" column="estado_via" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="peligros_calzada" visible="true" table="dim_via" column="peligros_calzada" uniqueMembers="false" levelType="Regular">
+        <Level name="peligros_calzada" visible="true" table="dim_via" column="peligros_calzada" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="urbano" visible="true" table="dim_via" column="urbano" uniqueMembers="false" levelType="Regular">
+        <Level name="urbano" visible="true" table="dim_via" column="urbano" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_conductor" name="Conductor">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_conductor" highCardinality="false" name="Conductor">
       <Hierarchy name="conductor" visible="true" hasAll="true" primaryKey="id_conductor">
-        <Table name="dim_conductor" alias="">
+        <Table name="dim_conductor">
         </Table>
-        <Level name="sexo" visible="true" table="dim_conductor" column="sexo" uniqueMembers="false" levelType="Regular">
+        <Level name="sexo" visible="true" table="dim_conductor" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="edad" visible="true" table="dim_conductor" column="edad" uniqueMembers="false" levelType="Regular">
+        <Level name="edad" visible="true" table="dim_conductor" column="edad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="ebrio" visible="true" table="dim_conductor" column="ebrio" uniqueMembers="false" levelType="Regular">
+        <Level name="ebrio" visible="true" table="dim_conductor" column="ebrio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="rango_edad" visible="true" table="dim_conductor" column="rango_edad" uniqueMembers="false" levelType="Regular">
+        <Level name="rango_edad" visible="true" table="dim_conductor" column="rango_edad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_localizacion" name="Localizacion">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_localizacion" highCardinality="false" name="Localizacion">
       <Hierarchy name="localizacion" visible="true" hasAll="true" primaryKey="id_localizacion">
-        <Table name="dim_localizacion" alias="">
+        <Table name="dim_localizacion">
         </Table>
-        <Level name="localidad" visible="true" table="dim_localizacion" column="localidad" uniqueMembers="false" levelType="Regular">
+        <Level name="localidad" visible="true" table="dim_localizacion" column="localidad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="id_damnificado" name="Damnificado">
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_damnificado" highCardinality="false" name="Damnificado">
       <Hierarchy name="damnificado" visible="true" hasAll="true" primaryKey="id_damnificado">
         <Table name="dim_damnificado">
         </Table>
-        <Level name="tipo_damnificado" visible="true" table="dim_damnificado" column="tipo_damnificado" uniqueMembers="false" levelType="Regular">
+        <Level name="tipo_damnificado" visible="true" table="dim_damnificado" column="tipo_damnificado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="sexo" visible="true" table="dim_damnificado" column="sexo" uniqueMembers="false" levelType="Regular">
+        <Level name="sexo" visible="true" table="dim_damnificado" column="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="edad" visible="true" table="dim_damnificado" column="edad" uniqueMembers="false" levelType="Regular">
+        <Level name="edad" visible="true" table="dim_damnificado" column="edad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="rango_edad" visible="true" table="dim_damnificado" column="rango_edad" uniqueMembers="false" levelType="Regular">
+        <Level name="rango_edad" visible="true" table="dim_damnificado" column="rango_edad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="gravedad" visible="true" table="dim_damnificado" column="gravedad" uniqueMembers="false" levelType="Regular">
+        <Level name="gravedad" visible="true" table="dim_damnificado" column="gravedad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
-        <Level name="pasajero" visible="true" table="dim_damnificado" column="pasajero" uniqueMembers="false">
+        <Level name="pasajero" visible="true" table="dim_damnificado" column="pasajero" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
     <Measure name="vehiculos_implicados" column="vehiculos_implicados" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="n_damnificados" column="n_damnificados" aggregator="distinct-count" visible="true">
+    <Measure name="n_damnificados" column="n_damnificados" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
